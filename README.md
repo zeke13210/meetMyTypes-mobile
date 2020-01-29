@@ -5,8 +5,8 @@ For the past 4 years Tem’ the Matchmaker has been delivering matchmaking event
 
 In addition to helping Tem achieve his goal he has allowed a group of beginner developers to work on the project to help improve their own skill-set. For any developers who find this project interesting and would like to contribute and help make it flourish we will be building it out for the duration of December 2019 - March 2020 (estimated) Let's grow and build and improve together!
 
-## Using the Meet my Types website
-This repo is meant to hold the Administrator Website for the admin Tem of Meet My Types Below is the list of features for the client to use.
+## Using the Meet my Types mobile app
+This repo is for users to hold and access the mobile app in order to meet their ideal love types
 1. Update user profiles
 2. To be continued....
 
