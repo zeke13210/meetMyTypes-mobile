@@ -70,19 +70,84 @@ export default class NewUserSignup extends Component {
       {label: 'Wisconsin', value: 'Wisconsin'},
       {label: 'Wyoming', value: 'Wyoming'},
     ],
-    fullName: '',
-    nickName: '',
-    dateOfBirth: '',
-    timeOfBirth: '',
-    gender: '',
-    cityOfBirth: '',
-    stateOfBirth: '',
-    currentCity: '',
-    currentState: '',
-    occupation: '',
-    specialGift: '',
-    email: '',
-    password: '',
+    fullName: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+    },
+    nickName: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+    },
+    dateOfBirth: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /((0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])-[12]\d{3})/,
+    },
+    timeOfBirth: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /\b((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))/,
+    },
+    gender: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /\*/,
+    },
+    cityOfBirth: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /[a-z]*[-]?[a-z]*/,
+    },
+    stateOfBirth: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /\*/,
+    },
+    currentCity: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+    },
+    currentState: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /\*/,
+    },
+    occupation: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+    },
+    specialGift: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+    },
+    email: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    },
+    password: {
+      touched: false,
+      valid: false,
+      value: '',
+      regex: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/,
+    },
     date_time: new Date(),
     mode: 'date',
     show: false,
@@ -110,12 +175,18 @@ export default class NewUserSignup extends Component {
     if (this.state.mode === 'date') {
       this.setState({
         show: Platform.OS === 'ios' ? true : false,
-        dateOfBirth: new Date(date).toLocaleDateString(),
+        dateOfBirth: {
+          ...this.state.dateOfBirth,
+          value: new Date(date).toLocaleDateString(),
+        },
       });
     } else {
       this.setState({
         show: Platform.OS === 'ios' ? true : false,
-        timeOfBirth: this.formatTime(new Date(date)),
+        timeOfBirth: {
+          ...this.state.timeOfBirth,
+          value: this.formatTime(new Date(date)),
+        },
       });
     }
   };
@@ -135,6 +206,21 @@ export default class NewUserSignup extends Component {
     this.show('time');
   };
 
+  validateAndSetField = field => {
+    if (this.state[field].regex.test(this.state[field].value)) {
+      this.setState(
+        {
+          [field]: {...this.state[field], touched: true, valid: true},
+        },
+        () => console.log(this.state),
+      );
+    } else {
+      this.setState({
+        [field]: {...this.state[field], touched: true, valid: false},
+      });
+    }
+  };
+
   render() {
     return (
       <KeyboardAvoidingView>
@@ -147,14 +233,46 @@ export default class NewUserSignup extends Component {
           </View>
           <View style={styles.inputRow}>
             <TextInput
-              style={[styles.input, {width: '45%'}]}
-              value={this.state.fullName}
-              onChange={e => this.setState({fullName: e.text})}
+              style={[
+                styles.input,
+                this.state.fullName.touched
+                  ? this.state.fullName.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '45%'},
+              ]}
+              value={this.state.fullName.value}
+              onBlur={() => this.validateAndSetField('fullName')}
+              onChange={e =>
+                this.setState({
+                  fullName: {
+                    ...this.state.fullName,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
             />
             <TextInput
-              style={[styles.input, {width: '45%'}]}
-              value={this.state.nickName}
-              onChange={e => this.setState({nickName: e.text})}
+              style={[
+                styles.input,
+                this.state.nickName.touched
+                  ? this.state.nickName.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '45%'},
+              ]}
+              value={this.state.nickName.value}
+              onBlur={() => this.validateAndSetField('nickName')}
+              onChange={e =>
+                this.setState({
+                  nickName: {
+                    ...this.state.nickName,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
             />
           </View>
           <View style={styles.labelRow}>
@@ -164,16 +282,32 @@ export default class NewUserSignup extends Component {
           </View>
           <View style={styles.inputRow}>
             <Text
-              style={[styles.input, {width: '27%'}]}
-              value={this.state.dateOfBirth}
+              style={[
+                styles.input,
+                this.state.dateOfBirth.touched
+                  ? this.state.dateOfBirth.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '27%'},
+              ]}
+              value={this.state.dateOfBirth.value}
               onPress={this.datePicker}>
-              {this.state.dateOfBirth}
+              {this.state.dateOfBirth.value}
             </Text>
             <Text
-              style={[styles.input, {width: '27%'}]}
-              value={this.state.timeOfBirth}
+              style={[
+                styles.input,
+                this.state.timeOfBirth.touched
+                  ? this.state.timeOfBirth.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '27%'},
+              ]}
+              value={this.state.timeOfBirth.value}
               onPress={this.timePicker}>
-              {this.state.timeOfBirth}
+              {this.state.timeOfBirth.value}
             </Text>
             {this.state.show && (
               <DateTimePicker
@@ -185,7 +319,7 @@ export default class NewUserSignup extends Component {
               />
             )}
             <Picker
-              selectedValue={this.state.gender}
+              selectedValue={this.state.gender.value}
               style={[styles.input, {width: '27%'}]}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({gender: itemValue})
@@ -204,9 +338,29 @@ export default class NewUserSignup extends Component {
             <Text style={[styles.label, {width: '45%'}]}>State of Birth</Text>
           </View>
           <View style={styles.labelRow}>
-            <TextInput style={[styles.input, {width: '45%'}]} />
+            <TextInput
+              style={[
+                styles.input,
+                this.state.cityOfBirth.touched
+                  ? this.state.cityOfBirth.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '45%'},
+              ]}
+              value={this.state.cityOfBirth.value}
+              onBlur={() => this.validateAndSetField('cityOfBirth')}
+              onChange={e =>
+                this.setState({
+                  cityOfBirth: {
+                    ...this.state.cityOfBirth,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
+            />
             <Picker
-              selectedValue={this.state.stateOfBirth}
+              selectedValue={this.state.stateOfBirth.value}
               style={[styles.input, {width: '45%'}]}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({stateOfBirth: itemValue})
@@ -224,10 +378,30 @@ export default class NewUserSignup extends Component {
             <Text style={[styles.label, {width: '45%'}]}>Current City</Text>
             <Text style={[styles.label, {width: '45%'}]}>Current State</Text>
           </View>
-          <View style={styles.labelRow}>
-            <TextInput style={[styles.input, {width: '45%'}]} />
+          <View style={styles.inputRow}>
+            <TextInput
+              style={[
+                styles.input,
+                this.state.currentCity.touched
+                  ? this.state.currentCity.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '45%'},
+              ]}
+              value={this.state.currentCity.value}
+              onBlur={() => this.validateAndSetField('currentCity')}
+              onChange={e =>
+                this.setState({
+                  currentCity: {
+                    ...this.state.currentCity,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
+            />
             <Picker
-              selectedValue={this.state.currentState}
+              selectedValue={this.state.currentState.value}
               style={[styles.input, {width: '45%'}]}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({currentState: itemValue})
@@ -245,16 +419,48 @@ export default class NewUserSignup extends Component {
             <Text style={[styles.label, {width: '45%'}]}>Occupation</Text>
             <Text style={[styles.label, {width: '45%'}]}>Special Gift</Text>
           </View>
-          <View style={styles.labelRow}>
+          <View style={styles.inputRow}>
             <TextInput
-              style={[styles.input, {width: '45%'}]}
-              value={this.state.occupation}
-              onChange={e => this.setState({occupation: e.text})}
+              style={[
+                styles.input,
+                this.state.occupation.touched
+                  ? this.state.occupation.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '45%'},
+              ]}
+              value={this.state.occupation.value}
+              onBlur={() => this.validateAndSetField('occupation')}
+              onChange={e =>
+                this.setState({
+                  occupation: {
+                    ...this.state.occupation,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
             />
             <TextInput
-              style={[styles.input, {width: '45%'}]}
-              value={this.state.specialGift}
-              onChange={e => this.setState({specialGift: e.text})}
+              style={[
+                styles.input,
+                this.state.specialGift.touched
+                  ? this.state.specialGift.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '45%'},
+              ]}
+              value={this.state.specialGift.value}
+              onBlur={() => this.validateAndSetField('specialGift')}
+              onChange={e =>
+                this.setState({
+                  specialGift: {
+                    ...this.state.specialGift,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
             />
           </View>
           <View style={styles.labelRow}>
@@ -264,9 +470,25 @@ export default class NewUserSignup extends Component {
           </View>
           <View style={styles.labelRow}>
             <TextInput
-              style={[styles.input, {width: '90%'}]}
-              value={this.state.email}
-              onChange={e => this.setState({email: e.text})}
+              style={[
+                styles.input,
+                this.state.email.touched
+                  ? this.state.email.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '90%'},
+              ]}
+              value={this.state.email.value}
+              onBlur={() => this.validateAndSetField('email')}
+              onChange={e =>
+                this.setState({
+                  email: {
+                    ...this.state.email,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
             />
           </View>
           <View style={styles.labelRow}>
@@ -274,9 +496,25 @@ export default class NewUserSignup extends Component {
           </View>
           <View style={styles.labelRow}>
             <TextInput
-              style={[styles.input, {width: '90%'}]}
-              value={this.state.password}
-              onChange={e => this.setState({password: e.text})}
+              style={[
+                styles.input,
+                this.state.password.touched
+                  ? this.state.password.valid
+                    ? styles.validInput
+                    : styles.invalidInput
+                  : null,
+                {width: '90%'},
+              ]}
+              value={this.state.password.value}
+              onBlur={() => this.validateAndSetField('password')}
+              onChange={e =>
+                this.setState({
+                  password: {
+                    ...this.state.password,
+                    value: e.nativeEvent.text,
+                  },
+                })
+              }
             />
           </View>
           <View style={styles.labelRow}>
@@ -310,10 +548,15 @@ const styles = StyleSheet.create({
   },
   input: {
     alignItems: 'center',
-    borderColor: '#BCE0FD',
     borderWidth: 1,
     marginLeft: 15,
     marginRight: 15,
+  },
+  validInput: {
+    borderColor: '#BCE0FD',
+  },
+  invalidInput: {
+    borderColor: 'red',
   },
   registerButton: {
     width: '90%',
