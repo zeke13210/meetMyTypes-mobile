@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@aws-amplify/cli": "^4.13.1",
-    "@react-native-community/datetimepicker": "^2.1.1",
+    "@react-native-community/datetimepicker": "^2.2.1",
     "aws-amplify": "^2.2.2",
     "aws-amplify-react-native": "^3.2.0",
     "react": "16.9.0",
