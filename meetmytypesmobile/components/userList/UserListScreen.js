@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
-export default class Matches extends Component {
+export default class UserListScreen extends Component {
     render() {
         return (
             <View style= {styles.container}>
                 
-                <Text>matches Component</Text>
+                <Text>user list Component</Text>
 
             </View>
         )

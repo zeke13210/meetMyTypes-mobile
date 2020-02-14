@@ -1,14 +1,14 @@
-import Profile from '../components/Profile/Profile';
-import MatchRequest from '../components/matchRequest/MatchRequest';
-import ConfirmedMatch from '../components/confirmedMatches/ConfirmedMatch';
-import UserList from '../components/userList/UserList';
+import Profile from '../components/Profile/ProfileScreen';
+import MatchRequest from '../components/matchRequest/MatchRequestScreen';
+import ConfirmedMatch from '../components/confirmedMatches/MatchScreen';
+import UserList from '../components/userList/UserListScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator();
-function TopNavBar() {
+function MainAppNavigator() {
     return (
         <NavigationContainer>
             <Tab.Navigator>
@@ -21,4 +21,4 @@ function TopNavBar() {
     )
 }
 
-export default TopNavBar;
+export default MainAppNavigator;

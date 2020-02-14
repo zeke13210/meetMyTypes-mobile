@@ -12,13 +12,13 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import TopNavBar from './navigation/TabNavigator';
+import MainAppNavigator from './navigation/MainAppNavigator';
 
 
 export default class App extends Component {
   render() {
     return (
-      <TopNavBar/>
+      <MainAppNavigator/>
     );
   }
 }
