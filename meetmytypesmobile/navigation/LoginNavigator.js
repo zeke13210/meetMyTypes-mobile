@@ -1,24 +1,20 @@
-import Profile from '../components/Profile/ProfileScreen';
-import MatchRequest from '../components/matchRequest/MatchRequestScreen';
-import ConfirmedMatch from '../components/confirmedMatches/MatchScreen';
-import UserList from '../components/userList/UserListScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import RegistrationScreen from '../components/Register/RegistrationScreen';
+import LoginScreen from '../components/Login/LoginScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Tab = createBottomTabNavigator();
-function MainAppNavigator() {
+const Stack = createStackNavigator();
+function LoginNavigator() {
     return (
         <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen name="Profile" component={Profile} />
-                <Tab.Screen name="MatchRequest" component={MatchRequest} />
-                <Tab.Screen name="UserList" component={UserList} />
-                <Tab.Screen name="Matches" component={ConfirmedMatch} />
-            </Tab.Navigator>
+            <Stack.Navigator>
+                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Register" component={RegistrationScreen} />
+            </Stack.Navigator>
         </NavigationContainer>
     )
 }
 
-export default MainAppNavigator;
+export default LoginNavigator;
