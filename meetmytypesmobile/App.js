@@ -13,7 +13,7 @@ import LoginNavigator from './navigation/LoginNavigator';
 export default class App extends Component {
   render() {
     return (
-      <MainAppNavigator/>
+      <LoginNavigator/>
     );
   }
 }
