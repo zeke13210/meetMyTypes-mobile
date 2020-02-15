@@ -1,9 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-
-
 
 export default function LoginScreen({ navigation }) {
 

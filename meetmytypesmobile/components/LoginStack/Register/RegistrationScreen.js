@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationContainer } from '@react-navigation/native';
 
 export default function RegistrationScreen({ navigation }) {
 
