@@ -10,6 +10,9 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './amplify/aws-exports';
+Amplify.configure(awsconfig);
 
 export default class NewUserSignup extends Component {
   state = {
@@ -152,6 +155,26 @@ export default class NewUserSignup extends Component {
     mode: 'date',
     show: false,
   };
+
+  register = () => Auth.signUp({
+    username: this.state.username,
+    password: this.state.password,
+    attributes: {
+        email: this.state.email,
+        name: this.state.fullName,
+        nickname: this.state.nickname,
+        gender: this.state.gender,
+        birthdate: this.state.dateOfBirth,
+        'custom:city_of_birth': this.state.cityOfBirth,
+        'custom:state_of_birth': this.state.stateOfBirth,
+        'custom:current_city': this.state.currentCity,
+        'custom:current_state': this.state.currentState,
+        'custom:occupation': this.state.occupation,
+        'custom:special_gift': this.state.specialGift,
+    }
+   })
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
 
   formatTime = date_time => {
     let hours = date_time.getHours();
@@ -518,7 +541,7 @@ export default class NewUserSignup extends Component {
             />
           </View>
           <View style={styles.labelRow}>
-            <TouchableOpacity style={styles.registerButton}>
+            <TouchableOpacity style={styles.registerButton} onPress={this.register}>
               <Text style={styles.registerText}>Register</Text>
             </TouchableOpacity>
           </View>
