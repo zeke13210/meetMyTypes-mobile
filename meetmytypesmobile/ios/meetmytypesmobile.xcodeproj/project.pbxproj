@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -44,6 +44,7 @@
 		00E356EE1AD99517003FC87E /* meetmytypesmobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = meetmytypesmobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* meetmytypesmobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = meetmytypesmobileTests.m; sourceTree = "<group>"; };
+		11FBFBD803D5518B1EE38368 /* Pods-meetmytypesmobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOSTests/Pods-meetmytypesmobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* meetmytypesmobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meetmytypesmobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = meetmytypesmobile/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = meetmytypesmobile/AppDelegate.m; sourceTree = "<group>"; };
@@ -51,22 +52,21 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = meetmytypesmobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = meetmytypesmobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = meetmytypesmobile/main.m; sourceTree = "<group>"; };
+		18AC2462333EFCD57ADE1C52 /* Pods-meetmytypesmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobileTests.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobileTests/Pods-meetmytypesmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		24B22D11995F85013FA1B6AE /* libPods-meetmytypesmobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meetmytypesmobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* meetmytypesmobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meetmytypesmobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* meetmytypesmobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "meetmytypesmobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34923529ACBAD349289ED291 /* libPods-meetmytypesmobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meetmytypesmobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		47DFF14EA5D78868E2E1AEE6 /* Pods-meetmytypesmobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile/Pods-meetmytypesmobile.debug.xcconfig"; sourceTree = "<group>"; };
-		62822A425126253A7BA07773 /* Pods-meetmytypesmobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOS/Pods-meetmytypesmobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		6645DB0867DF4A3B882701C5 /* Pods-meetmytypesmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobileTests.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobileTests/Pods-meetmytypesmobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		9C492477D5D16AF7EB56E936 /* Pods-meetmytypesmobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOSTests/Pods-meetmytypesmobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A1A8465745F67828FBD1378C /* Pods-meetmytypesmobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOSTests/Pods-meetmytypesmobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		ABDBC1D5926D31BA981506DA /* Pods-meetmytypesmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobileTests.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobileTests/Pods-meetmytypesmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC3189638C869FCF9A4840AA /* Pods-meetmytypesmobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOS/Pods-meetmytypesmobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		45BD35AF8663390E6CF8FA6E /* Pods-meetmytypesmobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOS/Pods-meetmytypesmobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		4A35FFEBBAAAE69F908A5D69 /* Pods-meetmytypesmobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile/Pods-meetmytypesmobile.debug.xcconfig"; sourceTree = "<group>"; };
+		8A605957E8E28C8FB1FAE5B2 /* Pods-meetmytypesmobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOS/Pods-meetmytypesmobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		B31696A7562CBC15426448B5 /* Pods-meetmytypesmobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile-tvOSTests/Pods-meetmytypesmobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB783DDF172BFA64032AA65A /* Pods-meetmytypesmobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile/Pods-meetmytypesmobile.release.xcconfig"; sourceTree = "<group>"; };
 		DC04EA5899CE75CDA76252EE /* libPods-meetmytypesmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meetmytypesmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7BCDC5B2E91B946BB4012E /* libPods-meetmytypesmobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meetmytypesmobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E93FEE00E862AC5ADFE8CEA4 /* Pods-meetmytypesmobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobile.release.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobile/Pods-meetmytypesmobile.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		FEE3114E5A9076E4CBFFA02C /* Pods-meetmytypesmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobileTests.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobileTests/Pods-meetmytypesmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +149,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5DB003347A264CEA91273CAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A35FFEBBAAAE69F908A5D69 /* Pods-meetmytypesmobile.debug.xcconfig */,
+				CB783DDF172BFA64032AA65A /* Pods-meetmytypesmobile.release.xcconfig */,
+				8A605957E8E28C8FB1FAE5B2 /* Pods-meetmytypesmobile-tvOS.debug.xcconfig */,
+				45BD35AF8663390E6CF8FA6E /* Pods-meetmytypesmobile-tvOS.release.xcconfig */,
+				B31696A7562CBC15426448B5 /* Pods-meetmytypesmobile-tvOSTests.debug.xcconfig */,
+				11FBFBD803D5518B1EE38368 /* Pods-meetmytypesmobile-tvOSTests.release.xcconfig */,
+				FEE3114E5A9076E4CBFFA02C /* Pods-meetmytypesmobileTests.debug.xcconfig */,
+				18AC2462333EFCD57ADE1C52 /* Pods-meetmytypesmobileTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +180,7 @@
 				00E356EF1AD99517003FC87E /* meetmytypesmobileTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				F615B33F9C26B36A48605570 /* Pods */,
+				5DB003347A264CEA91273CAB /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -180,22 +196,6 @@
 				2D02E4901E0B4A5D006451C7 /* meetmytypesmobile-tvOSTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F615B33F9C26B36A48605570 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				47DFF14EA5D78868E2E1AEE6 /* Pods-meetmytypesmobile.debug.xcconfig */,
-				E93FEE00E862AC5ADFE8CEA4 /* Pods-meetmytypesmobile.release.xcconfig */,
-				AC3189638C869FCF9A4840AA /* Pods-meetmytypesmobile-tvOS.debug.xcconfig */,
-				62822A425126253A7BA07773 /* Pods-meetmytypesmobile-tvOS.release.xcconfig */,
-				9C492477D5D16AF7EB56E936 /* Pods-meetmytypesmobile-tvOSTests.debug.xcconfig */,
-				A1A8465745F67828FBD1378C /* Pods-meetmytypesmobile-tvOSTests.release.xcconfig */,
-				ABDBC1D5926D31BA981506DA /* Pods-meetmytypesmobileTests.debug.xcconfig */,
-				6645DB0867DF4A3B882701C5 /* Pods-meetmytypesmobileTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,10 +304,11 @@
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "meetmytypesmobile" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -580,7 +581,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABDBC1D5926D31BA981506DA /* Pods-meetmytypesmobileTests.debug.xcconfig */;
+			baseConfigurationReference = FEE3114E5A9076E4CBFFA02C /* Pods-meetmytypesmobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -603,7 +604,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6645DB0867DF4A3B882701C5 /* Pods-meetmytypesmobileTests.release.xcconfig */;
+			baseConfigurationReference = 18AC2462333EFCD57ADE1C52 /* Pods-meetmytypesmobileTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -623,7 +624,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47DFF14EA5D78868E2E1AEE6 /* Pods-meetmytypesmobile.debug.xcconfig */;
+			baseConfigurationReference = 4A35FFEBBAAAE69F908A5D69 /* Pods-meetmytypesmobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -643,7 +644,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E93FEE00E862AC5ADFE8CEA4 /* Pods-meetmytypesmobile.release.xcconfig */;
+			baseConfigurationReference = CB783DDF172BFA64032AA65A /* Pods-meetmytypesmobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -662,9 +663,8 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC3189638C869FCF9A4840AA /* Pods-meetmytypesmobile-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 8A605957E8E28C8FB1FAE5B2 /* Pods-meetmytypesmobile-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -690,9 +690,8 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62822A425126253A7BA07773 /* Pods-meetmytypesmobile-tvOS.release.xcconfig */;
+			baseConfigurationReference = 45BD35AF8663390E6CF8FA6E /* Pods-meetmytypesmobile-tvOS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -718,7 +717,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C492477D5D16AF7EB56E936 /* Pods-meetmytypesmobile-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = B31696A7562CBC15426448B5 /* Pods-meetmytypesmobile-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -745,7 +744,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1A8465745F67828FBD1378C /* Pods-meetmytypesmobile-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 11FBFBD803D5518B1EE38368 /* Pods-meetmytypesmobile-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

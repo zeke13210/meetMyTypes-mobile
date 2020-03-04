@@ -10,16 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@aws-amplify/cli": "^4.13.3",
     "@react-native-community/cli": "^3.0.5-alpha.1",
     "@react-native-community/cli-platform-ios": "^3.0.5-alpha.1",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-navigation/bottom-tabs": "^5.0.3",
     "@react-navigation/native": "^5.0.3",
     "@react-navigation/stack": "^5.0.4",
-    "aws-amplify": "^2.2.2",
-    "aws-amplify-react": "^3.1.5",
-    "aws-amplify-react-native": "^3.2.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.6",
