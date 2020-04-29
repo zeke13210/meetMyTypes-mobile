@@ -9,6 +9,7 @@ import {
   Paragraph,
   Subheading,
   List,
+  ActivityIndicator,
 } from 'react-native-paper';
 
 export default class ProfileScreen extends Component {
@@ -16,15 +17,53 @@ export default class ProfileScreen extends Component {
     super(props);
     this.state = {
       isloading: true,
+      data: [{}],
     };
   }
+
   componentDidMount() {
-    return fetch(
-      'https://7oc71uxij6.execute-api.us-east-1.amazonaws.com/dev/{proxy+}',
-    );
+    fetch('http://localhost:3000/dev/user/1200')
+      .then((response) => response.json())
+      .then((results) => {
+        console.log(results);
+        this.setState({
+          loading: false,
+          data: results,
+        });
+      })
+      .catch((error) => console.log(error));
   }
 
+  Nested_if_Else = () => {
+    return this.state.isloading ? (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" color="#0c9" />
+      </View>
+    ) : this.state.data == null ? (
+      <Text>
+        Please give use 72 hours to review your profile and update it.
+      </Text>
+    ) : (
+      <Text>sORRY</Text>
+    );
+  };
+
   render() {
+    var message1 = (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" color="#0c9" />
+      </View>
+    );
+    var message2 = (
+      <Text>
+        Please give use 72 hours to review your profile and update it.
+      </Text>
+    );
+    const {isloading, data} = this.state;
+    const info =
+      isloading || data == null ? message1 : <Text> Try again later</Text>;
+    const info2 = !data ? message2 : <Text> No user found</Text>;
+
     return (
       <Card style={{marginTop: 175}}>
         <Card.Title
@@ -39,7 +78,7 @@ export default class ProfileScreen extends Component {
         />
         <Card.Content>
           <View style={{justifyContent: 'center', margin: 5, marginLeft: 220}}>
-            <Title>Zach</Title>
+            <Title></Title>
             <Subheading>The confidant</Subheading>
           </View>
           <Card.Actions
@@ -52,22 +91,26 @@ export default class ProfileScreen extends Component {
             </Button>
           </Card.Actions>
           <View style={styles.lineStyle} />
-          <List.Section
-            style={{justifyContent: 'center', margin: 20, marginLeft: 100}}>
-            <List.Subheader style={{fontSize: 24, color: 'black'}}>
-              Characteristics
-            </List.Subheader>
-            <List.Item title="First Item" />
-            <List.Item title="Second Item" />
-          </List.Section>
-          <List.Section
-            style={{justifyContent: 'center', margin: 20, marginLeft: 100}}>
-            <List.Subheader style={{fontSize: 24, color: 'black'}}>
-              Top 4 Types
-            </List.Subheader>
-            <List.Item title="First Item" />
-            <List.Item title="Second Item" />
-          </List.Section>
+          {!info || info2 ? (
+            <View>
+              <List.Section
+                style={{justifyContent: 'center', margin: 20, marginLeft: 100}}>
+                <List.Subheader style={{fontSize: 24, color: 'black'}}>
+                  Characteristics
+                </List.Subheader>
+                <List.Item title="First Item" />
+                <List.Item title="Second Item" />
+              </List.Section>
+              <List.Section
+                style={{justifyContent: 'center', margin: 20, marginLeft: 100}}>
+                <List.Subheader style={{fontSize: 24, color: 'black'}}>
+                  Top 4 Types
+                </List.Subheader>
+                <List.Item title="First Item" />
+                <List.Item title="Second Item" />
+              </List.Section>
+            </View>
+          ) : null}
         </Card.Content>
       </Card>
     );
