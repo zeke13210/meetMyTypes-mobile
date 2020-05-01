@@ -8,7 +8,13 @@ import loginUser from './loginUser';
 export default function LoginScreen({ navigation }) {
     const [email, onChangeEmail] = React.useState()
     const [password, onChangePassword] = React.useState()
-
+    const [token, setToken] = React.useState(null)
+    if(token == null){
+      console.log("This is token: ", token)
+    } else{
+      console.log("This is current token: ", token)
+      navigation.navigate('Register')
+    }
     return (
       <View style={styles.container}>
         <TextInput
@@ -27,7 +33,9 @@ export default function LoginScreen({ navigation }) {
           onChangeText={(text) => onChangePassword(text)}
         />
         <Button block success style={styles.button} 
-        onPress={() => {loginUser(email, password)}}>
+        onPress={() =>loginUser(email, password).then(data => {
+          setToken(data)
+        }).catch(err => setToken(err))}>
 
           <Text
             style={styles.buttonText}>
