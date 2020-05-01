@@ -8,7 +8,7 @@ import RegistrationScreen from '../components/LoginStack/Register/RegistrationSc
 
 const Stack = createStackNavigator();
 
-function MyStack() {
+export default function LoginStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -17,10 +17,10 @@ function MyStack() {
   );
 }
 
-export default function LoginNavigator() {
+function LoginNavigator() {
   return (
     <NavigationContainer>
-      <MyStack />
+      <LoginStack />
     </NavigationContainer>
   );
 }
