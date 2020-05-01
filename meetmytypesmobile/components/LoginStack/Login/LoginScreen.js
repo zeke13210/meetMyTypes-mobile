@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {Toast, Button} from 'native-base';
 import {StyleSheet, View, Text, TextInput, Image} from 'react-native';
 import loginUser from './loginUser';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default function LoginScreen({ navigation }) {
@@ -13,7 +14,12 @@ export default function LoginScreen({ navigation }) {
       console.log("This is token: ", token)
     } else{
       console.log("This is current token: ", token)
-      navigation.navigate('Register')
+      AsyncStorage.setItem('TOKEN', token).then(res =>{
+        console.log("Token set in storage", res)
+      }).catch(err => {
+        console.log("Error storing token: ", err)
+      })
+
     }
     return (
       <View style={styles.container}>
