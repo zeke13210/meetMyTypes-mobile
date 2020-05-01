@@ -13,19 +13,18 @@ import SplashScreen from './SplashScreen';
 
 export default class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super();
-    this.state= {
+    this.state = {
       isLoading: true,
       userToken: null
     }
   }
   
   render() {
-    
-    return (
-      <LoginNavigator/>
-    );
+    const token = this.state.userToken
+    return (token == null ? <LoginNavigator/> : <MainAppNavigator/> )
+
   }
 }
 
