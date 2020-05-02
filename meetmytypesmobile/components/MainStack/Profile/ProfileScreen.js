@@ -15,54 +15,30 @@ import {
 export default class ProfileScreen extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isloading: true,
-      data: [{}],
+      data: [],
     };
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/dev/user/1200')
-      .then((response) => response.json())
-      .then((results) => {
-        console.log(results);
-        this.setState({
-          loading: false,
-          data: results,
-        });
-      })
-      .catch((error) => console.log(error));
+  async componentDidMount() {
+    const response = await fetch(
+      'https://qj87hoxzmk.execute-api.us-east-1.amazonaws.com/Dev/currentUsers/1200',
+    );
+    const body = await response.json();
+    this.setState({data: body, isloading: false});
   }
 
-  Nested_if_Else = () => {
-    return this.state.isloading ? (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#0c9" />
-      </View>
-    ) : this.state.data == null ? (
-      <Text>
-        Please give use 72 hours to review your profile and update it.
-      </Text>
-    ) : (
-      <Text>sORRY</Text>
-    );
-  };
-
   render() {
-    var message1 = (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#0c9" />
-      </View>
-    );
-    var message2 = (
-      <Text>
-        Please give use 72 hours to review your profile and update it.
-      </Text>
-    );
     const {isloading, data} = this.state;
-    const info =
-      isloading || data == null ? message1 : <Text> Try again later</Text>;
-    const info2 = !data ? message2 : <Text> No user found</Text>;
+
+    // if (isloading)
+    //   return (
+    //     <View style={styles.loader}>
+    //       <ActivityIndicator size="large" color="#0c9" />
+    //     </View>
+    //   );
 
     return (
       <Card style={{marginTop: 175}}>
@@ -78,8 +54,8 @@ export default class ProfileScreen extends Component {
         />
         <Card.Content>
           <View style={{justifyContent: 'center', margin: 5, marginLeft: 220}}>
-            <Title></Title>
-            <Subheading>The confidant</Subheading>
+            <Title>{data.Nickname}</Title>
+            <Subheading>{data.LoveType}</Subheading>
           </View>
           <Card.Actions
             style={{justifyContent: 'center', margin: 20, marginLeft: 200}}>
@@ -91,26 +67,30 @@ export default class ProfileScreen extends Component {
             </Button>
           </Card.Actions>
           <View style={styles.lineStyle} />
-          {!info || info2 ? (
+          {data ? (
             <View>
               <List.Section
                 style={{justifyContent: 'center', margin: 20, marginLeft: 100}}>
                 <List.Subheader style={{fontSize: 24, color: 'black'}}>
                   Characteristics
                 </List.Subheader>
-                <List.Item title="First Item" />
-                <List.Item title="Second Item" />
+                <Text>{data.Characteristics}</Text>
               </List.Section>
               <List.Section
                 style={{justifyContent: 'center', margin: 20, marginLeft: 100}}>
                 <List.Subheader style={{fontSize: 24, color: 'black'}}>
                   Top 4 Types
                 </List.Subheader>
-                <List.Item title="First Item" />
-                <List.Item title="Second Item" />
+
+                <Text>{data.Top4LoveTypes}</Text>
               </List.Section>
             </View>
-          ) : null}
+          ) : (
+            <Text>
+              Please give us 72 hours to review your profile and update it.
+              Thanks for you patience !!
+            </Text>
+          )}
         </Card.Content>
       </Card>
     );
