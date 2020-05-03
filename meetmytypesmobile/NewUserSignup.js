@@ -10,9 +10,9 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Amplify, { Auth } from 'aws-amplify';
-import awsconfig from './amplify/aws-exports';
-Amplify.configure(awsconfig);
+//import Amplify, { Auth } from 'aws-amplify';
+//import awsconfig from './amplify/aws-exports';
+//Amplify.configure(awsconfig);
 
 export default class NewUserSignup extends Component {
   state = {
@@ -156,7 +156,7 @@ export default class NewUserSignup extends Component {
     show: false,
   };
 
-  register = () => Auth.signUp({
+  /*register = () => Auth.signUp({
     username: this.state.username,
     password: this.state.password,
     attributes: {
@@ -174,7 +174,7 @@ export default class NewUserSignup extends Component {
     }
    })
   .then(data => console.log(data))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err)); */
 
   formatTime = date_time => {
     let hours = date_time.getHours();
