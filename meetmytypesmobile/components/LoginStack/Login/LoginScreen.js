@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Toast, Button} from 'native-base';
 import {StyleSheet, View, Text, TextInput, Image} from 'react-native';
 import loginUser from './loginUser';
@@ -7,9 +7,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default function LoginScreen({ navigation }) {
-    const [email, onChangeEmail] = React.useState()
-    const [password, onChangePassword] = React.useState()
-    const [token, setToken] = React.useState(null)
+    const [email, onChangeEmail] = useState()
+    const [password, onChangePassword] = useState()
+    const [token, setToken] = useState(null)
     if(token == null){
       console.log("This is token: ", token)
     } else{
