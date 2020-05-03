@@ -5,6 +5,12 @@
  * @format
  * @flow
  */
+import 'react-native-gesture-handler';
+import React, { Component } from 'react';
+import MainAppNavigator from './navigation/MainAppNavigator';
+import LoginNavigator from './navigation/LoginNavigator';
+import SplashScreen from './SplashScreen';
+import AuthFlow from './navigation/AuthFlow';
 
 import React from 'react';
 import {
