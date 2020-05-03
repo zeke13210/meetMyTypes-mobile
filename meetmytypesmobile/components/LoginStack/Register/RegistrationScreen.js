@@ -9,7 +9,7 @@ export default function RegistrationScreen({ navigation }) {
     const [password, setPassword] = useState()
     const [dateTimeOfBirth, setDateOfBirth] = useState(new Date())
     const [timeOfBirth, setTime] = useState('Please enter time')
-    const [dateOfBirth, setDate] = useState()
+    const [dateOfBirth, setDate] = useState('Please enter date')
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
@@ -63,13 +63,16 @@ export default function RegistrationScreen({ navigation }) {
                             value={password} />
                     </Item>
 
-                    <Text>Date of Birth</Text>
-                    <Button block primary onPress={showDatepicker}>
-                        <Text >Show date picker!</Text>
-                    </Button>
-
+                    
                     <Item>
-                        <Text>Time</Text>
+                        <Text>Date of Birth</Text>
+                        <Icon active name="ios-calendar"/>
+                        <Text onPress={showDatepicker}>
+                            {dateOfBirth}
+                        </Text>
+                    </Item>
+                    <Item>
+                        <Text>Time of Birth</Text>
                         <Icon active name='ios-alarm' />
                         <Text onPress={showTimepicker}>
                             {timeOfBirth}
@@ -94,6 +97,7 @@ export default function RegistrationScreen({ navigation }) {
                     </Item>
 
                     {show &&
+                    //need to confirm how to execute render and show for confirm
                         (<Container>
                             <DateTimePicker
                                 testID="dateTimePicker"
