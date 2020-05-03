@@ -7,14 +7,16 @@ export default function RegistrationScreen({ navigation }) {
     const [email, setEmail] = useState()
     const [gender, setGender] = useState(null)
     const [password, setPassword] = useState()
-    const [dateOfBirth, setDateOfBirth] = useState(new Date(1598051730000))
+    const [dateTimeOfBirth, setDateOfBirth] = useState(new Date())
+    const [timeOfBirth, setTime] = useState('Please enter time')
+    const [dateOfBirth, setDate] = useState()
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
-        setDate(currentDate);
+        setDateOfBirth(currentDate);
     };
 
     const showMode = currentMode => {
@@ -29,6 +31,16 @@ export default function RegistrationScreen({ navigation }) {
     const showTimepicker = () => {
         showMode('time');
     };
+    const convertDateToTime = () => {
+        let time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() //convert date to time string
+        setTime(time);
+        setShow(false)
+    }
+    const resetScreen = () => {
+        setEmail(null)
+        setPassword(null)
+        setTime("Please enter the time")
+    }
     return (
         <Container>
             <Header>
@@ -55,9 +67,14 @@ export default function RegistrationScreen({ navigation }) {
                     <Button block primary onPress={showDatepicker}>
                         <Text >Show date picker!</Text>
                     </Button>
-                    <Button block primary onPress={showTimepicker}>
-                        <Text>Show Time picker</Text>
-                    </Button>
+
+                    <Item>
+                        <Text>Time</Text>
+                        <Icon active name='ios-alarm' />
+                        <Text onPress={showTimepicker}>
+                            {timeOfBirth}
+                        </Text>
+                    </Item>
                     <Item picker>
                         <Text>Gender</Text>
 
@@ -76,17 +93,24 @@ export default function RegistrationScreen({ navigation }) {
                         </Picker>
                     </Item>
 
-                    {show && (
-                        <DateTimePicker
-                            testID="dateTimePicker"
-                            timeZoneOffsetInMinutes={0}
-                            value={dateOfBirth}
-                            mode={mode}
-                            is24Hour={true}
-                            display="default"
-                            onChange={onChange}
-                        />
-                    )}
+                    {show &&
+                        (<Container>
+                            <DateTimePicker
+                                testID="dateTimePicker"
+                                //timeZoneOffsetInMinutes={0}
+                                value={dateTimeOfBirth}
+                                mode={mode}
+                                display="default"
+                                onChange={onChange}
+                            />
+                            <Button onPress={() => convertDateToTime()}>
+                                <Text>Confirm</Text>
+                            </Button>
+                        </Container>)
+                    }
+                    <Button block primary onPress={() => resetScreen()}>
+                        <Text>Clear Input</Text>
+                    </Button>
                     <Button block primary onPress={() => navigation.goBack()}>
                         <Text>Go back</Text>
                     </Button>
@@ -94,7 +118,7 @@ export default function RegistrationScreen({ navigation }) {
 
             </Content>
 
-        </Container>)
+        </Container >)
 }
 
 const styles = StyleSheet.create({
