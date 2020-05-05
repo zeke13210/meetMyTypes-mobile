@@ -34,13 +34,13 @@ export default function RegistrationScreen({ navigation }) {
     };
     const convertDateToTime = (mode) => {
         let time;
-        if ( dateTimeOfBirth.getHours() === 0){
+        if (dateTimeOfBirth.getHours() === 0) {
             //when hour is 0 show 12
             time = (dateTimeOfBirth.getHours() + 12) + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
-        } else if ( dateTimeOfBirth.getHours() === 12){
+        } else if (dateTimeOfBirth.getHours() === 12) {
             //show 12 pm when hour is 12
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " PM" //convert date to time string
-        } else if (dateTimeOfBirth.getHours() > 12){
+        } else if (dateTimeOfBirth.getHours() > 12) {
             time = (dateTimeOfBirth.getHours() - 12) + ":" + dateTimeOfBirth.getMinutes() + " PM" //convert date to time string
         } else {
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
@@ -85,36 +85,56 @@ export default function RegistrationScreen({ navigation }) {
                                         value={password} />
                                 </Item>
                             </Row>
-                                <Item >
-                                    <Text style={{paddingRight: 10}}>Date of Birth</Text>
-                                    <Icon active name="ios-calendar" />
-                                    <Text style={styles.dateStyle} onPress={showDatepicker}>
-                                        {dateOfBirth}
-                                    </Text>
-                                </Item>
-                                <Item>
-                                    <Text style={{paddingRight: 10}}>Time of Birth</Text>
-                                    <Icon active name='ios-alarm' />
-                                    <Text style={styles.dateStyle} onPress={showTimepicker}>
-                                        {timeOfBirth}
-                                    </Text>
-                                </Item>
-                            <Item picker>
-                                <Text>Gender</Text>
-                                <Picker
-                                    mode="dropdown"
-                                    iosIcon={<Icon name="arrow-down" />}
-                                    style={{ width: undefined }}
-                                    placeholder="Gender"
-                                    placeholderStyle={{ color: "#bfc6ea" }}
-                                    placeholderIconColor="#007aff"
-                                    selectedValue={gender}
-                                    onValueChange={(text) => setGender(text)}
-                                >
-                                    <Picker.Item label="Male" value="Male" />
-                                    <Picker.Item label="Female" value="Female" />
-                                </Picker>
+                            <Item >
+                                <Text style={{ paddingRight: 10 }}>Date of Birth</Text>
+                                <Icon active name="ios-calendar" />
+                                <Text style={styles.dateStyle} onPress={showDatepicker}>
+                                    {dateOfBirth}
+                                </Text>
                             </Item>
+                            <Item>
+                                <Text style={{ paddingRight: 10 }}>Time of Birth</Text>
+                                <Icon active name='ios-alarm' />
+                                <Text style={styles.dateStyle} onPress={showTimepicker}>
+                                    {timeOfBirth}
+                                </Text>
+                            </Item>
+                            <Row>
+
+                                <Item picker>
+                                    <Text>Gender</Text>
+                                    <Picker
+                                        mode="dropdown"
+                                        iosIcon={<Icon name="arrow-down" />}
+                                        style={{ width: undefined }}
+                                        placeholder="Gender"
+                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderIconColor="#007aff"
+                                        selectedValue={gender}
+                                        onValueChange={(text) => setGender(text)}
+                                    >
+                                        <Picker.Item label="Male" value="Male" />
+                                        <Picker.Item label="Female" value="Female" />
+                                    </Picker>
+                                </Item>
+                                <Item picker>
+                                    <Text>State</Text>
+                                    <Picker
+                                        mode="dropdown"
+                                        iosIcon={<Icon name="arrow-down" />}
+                                        style={{ width: undefined }}
+                                        placeholder="Gender"
+                                        placeholderStyle={{ color: "#bfc6ea" }}
+                                        placeholderIconColor="#007aff"
+                                        selectedValue={gender}
+                                        onValueChange={(text) => setGender(text)}
+                                    >
+                                        <Picker.Item label="Male" value="Male" />
+                                        <Picker.Item label="Female" value="Female" />
+                                    </Picker>
+                                </Item>
+                            </Row>
+
                             {show &&
                                 //need to confirm how to execute render and show for confirm
                                 (<Container>
