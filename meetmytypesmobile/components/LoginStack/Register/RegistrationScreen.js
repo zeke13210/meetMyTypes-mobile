@@ -3,10 +3,12 @@ import { Container, Content, Text, Input, Item, Button, Form, Icon, Header, Pick
 import { StyleSheet, View, TextInput, Image } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import states from './sates.json'
 
 export default function RegistrationScreen({ navigation }) {
     const [email, setEmail] = useState()
     const [gender, setGender] = useState(null)
+    const [state, setState] = useState(null)
     const [password, setPassword] = useState()
     const [dateTimeOfBirth, setDateOfBirth] = useState(new Date())
     const [timeOfBirth, setTime] = useState('Time?')
@@ -58,6 +60,8 @@ export default function RegistrationScreen({ navigation }) {
         setPassword(null)
         setTime("Time?")
         setDate("Date?")
+        setState(null)
+        setGender(null)
     }
     return (
         <Container>
@@ -123,14 +127,19 @@ export default function RegistrationScreen({ navigation }) {
                                         mode="dropdown"
                                         iosIcon={<Icon name="arrow-down" />}
                                         style={{ width: undefined }}
-                                        placeholder="Gender"
+                                        placeholder="State"
                                         placeholderStyle={{ color: "#bfc6ea" }}
                                         placeholderIconColor="#007aff"
-                                        selectedValue={gender}
-                                        onValueChange={(text) => setGender(text)}
+                                        selectedValue={state}
+                                        onValueChange={(text) => setState(text)}
                                     >
-                                        <Picker.Item label="Male" value="Male" />
-                                        <Picker.Item label="Female" value="Female" />
+                                      {states.states.map((state) => (
+                                          <Picker.Item
+                                          key={state.label}
+                                          label={state.label}
+                                          value={state.value}
+                                        />
+                                      ))}
                                     </Picker>
                                 </Item>
                             </Row>
