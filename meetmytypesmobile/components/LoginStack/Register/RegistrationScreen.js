@@ -6,6 +6,10 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import states from './sates.json'
 
 export default function RegistrationScreen({ navigation }) {
+    const [fullName, setFullName] = useState()
+    const [nickName, setNickName] = useState()
+    const [cityOfBirth, setCityOfBirth] = useState()
+    const [cityOfResidence, setCityOfResidence] = useState()
     const [email, setEmail] = useState()
     const [gender, setGender] = useState(null)
     const [state, setState] = useState(null)
@@ -62,6 +66,10 @@ export default function RegistrationScreen({ navigation }) {
         setDate("Date?")
         setState(null)
         setGender(null)
+        setFullName(null)
+        setCityOfBirth(null)
+        setCityOfResidence(null)
+        setNickName(null)
     }
     return (
         <Container>
@@ -74,21 +82,29 @@ export default function RegistrationScreen({ navigation }) {
                         <Form>
                             <Row>
                                 <Item regular style={styles.inputBox}>
-                                    <Input placeholder="email"
-                                        onChangeText={(text) => setEmail(text)}
+                                    <Input placeholder="fullName"
+                                        onChangeText={(text) => setFullName(text)}
                                         placeholderTextColor="black"
-                                        value={email} />
+                                        value={fullName} />
                                 </Item>
                             </Row>
                             <Row>
                                 <Item regular style={styles.inputBox}>
-                                    <Input placeholder="password"
-                                        onChangeText={(text) => setPassword(text)}
+                                    <Input placeholder="nick name"
+                                        onChangeText={(text) => setNickName(text)}
                                         placeholderTextColor="black"
-                                        secureTextEntry={true}
-                                        value={password} />
+                                        value={nickName} />
                                 </Item>
                             </Row>
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="city of residence"
+                                        onChangeText={(text) => setCityOfResidence(text)}
+                                        placeholderTextColor="black"
+                                        value={cityOfResidence} />
+                                </Item>
+                            </Row>
+
                             <Item >
                                 <Text style={{ paddingRight: 10 }}>Date of Birth</Text>
                                 <Icon active name="ios-calendar" />
@@ -133,17 +149,24 @@ export default function RegistrationScreen({ navigation }) {
                                         selectedValue={state}
                                         onValueChange={(text) => setState(text)}
                                     >
-                                      {states.states.map((state) => (
-                                          <Picker.Item
-                                          key={state.label}
-                                          label={state.label}
-                                          value={state.value}
-                                        />
-                                      ))}
+                                        {states.states.map((state) => (
+                                            <Picker.Item
+                                                key={state.label}
+                                                label={state.label}
+                                                value={state.value}
+                                            />
+                                        ))}
                                     </Picker>
                                 </Item>
                             </Row>
-
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="city of Birth"
+                                        onChangeText={(text) => setCityOfBirth(text)}
+                                        placeholderTextColor="black"
+                                        value={cityOfBirth} />
+                                </Item>
+                            </Row>
                             {show &&
                                 //need to confirm how to execute render and show for confirm
                                 (<Container>
@@ -160,6 +183,23 @@ export default function RegistrationScreen({ navigation }) {
                                     </Button>
                                 </Container>)
                             }
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="email"
+                                        onChangeText={(text) => setEmail(text)}
+                                        placeholderTextColor="black"
+                                        value={email} />
+                                </Item>
+                            </Row>
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="password"
+                                        onChangeText={(text) => setPassword(text)}
+                                        placeholderTextColor="black"
+                                        secureTextEntry={true}
+                                        value={password} />
+                                </Item>
+                            </Row>
                             <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
@@ -182,7 +222,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#E5E5E5',
         borderColor: 'gray',
         borderRadius: 2,
-        paddingHorizontal: 10,
+        paddingHorizontal: 8,
         fontSize: 16,
         marginVertical: 10,
     },
