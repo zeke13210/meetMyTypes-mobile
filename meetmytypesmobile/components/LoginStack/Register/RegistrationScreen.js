@@ -4,22 +4,35 @@ import { StyleSheet, View, TextInput, Image } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import states from './sates.json'
+import registerUser from './registerUser';
 
 export default function RegistrationScreen({ navigation }) {
-    const [fullName, setFullName] = useState()
-    const [nickName, setNickName] = useState()
-    const [cityOfBirth, setCityOfBirth] = useState()
-    const [cityOfResidence, setCityOfResidence] = useState()
-    const [email, setEmail] = useState()
-    const [gender, setGender] = useState(null)
-    const [state, setState] = useState(null)
-    const [password, setPassword] = useState()
+    const [fullName, setFullName] = useState('')
+    const [nickName, setNickName] = useState('')
+    const [cityOfBirth, setCityOfBirth] = useState('')
+    const [cityOfResidence, setCityOfResidence] = useState('')
+    const [email, setEmail] = useState('')
+    const [gender, setGender] = useState('')
+    const [state, setState] = useState('')
+    const [password, setPassword] = useState('')
     const [dateTimeOfBirth, setDateOfBirth] = useState(new Date())
     const [timeOfBirth, setTime] = useState('Time?')
     const [dateOfBirth, setDate] = useState('Date?')
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
+    const userInfo = {
+        fullName: fullName,
+        nickName: nickName,
+        cityOfBirth: cityOfBirth,
+        cityOfResidence: cityOfResidence,
+        email: email,
+        state: state,
+        gender: gender,
+        password: password,
+        dateOfBirth: dateOfBirth,
+        timeOfBirth: timeOfBirth
+    }
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
@@ -60,16 +73,16 @@ export default function RegistrationScreen({ navigation }) {
         setShow(false)
     }
     const resetScreen = () => {
-        setEmail(null)
-        setPassword(null)
+        setEmail('')
+        setPassword('')
         setTime("Time?")
         setDate("Date?")
-        setState(null)
-        setGender(null)
-        setFullName(null)
-        setCityOfBirth(null)
-        setCityOfResidence(null)
-        setNickName(null)
+        setState('')
+        setGender('')
+        setFullName('')
+        setCityOfBirth('')
+        setCityOfResidence('')
+        setNickName('')
     }
     return (
         <Container>
@@ -203,8 +216,8 @@ export default function RegistrationScreen({ navigation }) {
                             <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
-                            <Button style={styles.buttonStyle} block primary onPress={() => navigation.goBack()}>
-                                <Text>Go back</Text>
+                            <Button style={styles.buttonStyle} block primary onPress={() => registerUser(userInfo)}>
+                                <Text>Submit</Text>
                             </Button>
                         </Form>
                     </Col>
