@@ -131,10 +131,10 @@ export default function RegistrationScreen({ navigation }) {
                                     </Button>
                                 </Container>)
                             }
-                            <Button block primary onPress={() => resetScreen()}>
+                            <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
-                            <Button block primary onPress={() => navigation.goBack()}>
+                            <Button style={styles.buttonStyle} block primary onPress={() => navigation.goBack()}>
                                 <Text>Go back</Text>
                             </Button>
                         </Form>
@@ -157,10 +157,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginVertical: 10,
     },
-
     dateStyle: {
         fontSize: 16,
         borderRadius: 2,
         padding: 8
+    },
+    buttonStyle: {
+        backgroundColor: '#E53765',
+        margin: 5
     }
 })
