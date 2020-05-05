@@ -35,10 +35,10 @@ export default function RegistrationScreen({ navigation }) {
     const convertDateToTime = (mode) => {
         let time;
         if ( dateTimeOfBirth.getHours() === 0){
+            //when hour is 0 show 12
             time = (dateTimeOfBirth.getHours() + 12) + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
-
         } else if ( dateTimeOfBirth.getHours() === 12){
-            console.log("HOurs: ", dateTimeOfBirth.getHours())
+            //show 12 pm when hour is 12
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " PM" //convert date to time string
         } else if (dateTimeOfBirth.getHours() > 12){
             time = (dateTimeOfBirth.getHours() - 12) + ":" + dateTimeOfBirth.getMinutes() + " PM" //convert date to time string
@@ -56,7 +56,8 @@ export default function RegistrationScreen({ navigation }) {
     const resetScreen = () => {
         setEmail(null)
         setPassword(null)
-        setTime("Please enter the time")
+        setTime("Time?")
+        setDate("Date?")
     }
     return (
         <Container>
@@ -85,16 +86,12 @@ export default function RegistrationScreen({ navigation }) {
                                 </Item>
                             </Row>
                                 <Item >
-
                                     <Text style={{paddingRight: 10}}>Date of Birth</Text>
-
                                     <Icon active name="ios-calendar" />
                                     <Text style={styles.dateStyle} onPress={showDatepicker}>
                                         {dateOfBirth}
                                     </Text>
-
                                 </Item>
-                            
                                 <Item>
                                     <Text style={{paddingRight: 10}}>Time of Birth</Text>
                                     <Icon active name='ios-alarm' />
@@ -102,10 +99,6 @@ export default function RegistrationScreen({ navigation }) {
                                         {timeOfBirth}
                                     </Text>
                                 </Item>
-                            
-
-
-
                             <Item picker>
                                 <Text>Gender</Text>
                                 <Picker
@@ -122,7 +115,6 @@ export default function RegistrationScreen({ navigation }) {
                                     <Picker.Item label="Female" value="Female" />
                                 </Picker>
                             </Item>
-
                             {show &&
                                 //need to confirm how to execute render and show for confirm
                                 (<Container>
