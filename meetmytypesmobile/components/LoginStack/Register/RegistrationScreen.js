@@ -13,6 +13,9 @@ export default function RegistrationScreen({ navigation }) {
     const [cityOfResidence, setCityOfResidence] = useState('')
     const [email, setEmail] = useState('')
     const [gender, setGender] = useState('')
+    const [age, setAge] = useState('')
+    const [occupation, setOccupation] = useState('')
+    const [specialGift, setSpecialGift] = useState('')
     const [state, setState] = useState('')
     const [password, setPassword] = useState('')
     const [dateTimeOfBirth, setDateOfBirth] = useState(new Date())
@@ -64,13 +67,24 @@ export default function RegistrationScreen({ navigation }) {
         } else {
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
         }
-        let date = (dateTimeOfBirth.getMonth() + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
+        let date = + (dateTimeOfBirth.getMonth() + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
         if (mode === 'time') {
             setTime(time);
         } else if (mode === 'date') {
             setDate(date)
         }
         setShow(false)
+    }
+    const ageList = (ageMin, ageMax) => {
+        content = []
+        for (i = ageMin; i < ageMax; i++) {
+            content.push( <Picker.Item
+                key={i}
+                label={i}
+                value={i}
+            />)
+        }
+        return content
     }
     const resetScreen = () => {
         setEmail('')
@@ -83,6 +97,9 @@ export default function RegistrationScreen({ navigation }) {
         setCityOfBirth('')
         setCityOfResidence('')
         setNickName('')
+        setAge('')
+        setOccupation('')
+        setSpecialGift('')
     }
     return (
         <Container>
@@ -132,54 +149,6 @@ export default function RegistrationScreen({ navigation }) {
                                     {timeOfBirth}
                                 </Text>
                             </Item>
-                            <Row>
-
-                                <Item picker>
-                                    <Text>Gender</Text>
-                                    <Picker
-                                        mode="dropdown"
-                                        iosIcon={<Icon name="arrow-down" />}
-                                        style={{ width: undefined }}
-                                        placeholder="Gender"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
-                                        placeholderIconColor="#007aff"
-                                        selectedValue={gender}
-                                        onValueChange={(text) => setGender(text)}
-                                    >
-                                        <Picker.Item label="Male" value="Male" />
-                                        <Picker.Item label="Female" value="Female" />
-                                    </Picker>
-                                </Item>
-                                <Item picker>
-                                    <Text>State</Text>
-                                    <Picker
-                                        mode="dropdown"
-                                        iosIcon={<Icon name="arrow-down" />}
-                                        style={{ width: undefined }}
-                                        placeholder="State"
-                                        placeholderStyle={{ color: "#bfc6ea" }}
-                                        placeholderIconColor="#007aff"
-                                        selectedValue={state}
-                                        onValueChange={(text) => setState(text)}
-                                    >
-                                        {states.states.map((state) => (
-                                            <Picker.Item
-                                                key={state.label}
-                                                label={state.label}
-                                                value={state.value}
-                                            />
-                                        ))}
-                                    </Picker>
-                                </Item>
-                            </Row>
-                            <Row>
-                                <Item regular style={styles.inputBox}>
-                                    <Input placeholder="city of Birth"
-                                        onChangeText={(text) => setCityOfBirth(text)}
-                                        placeholderTextColor="black"
-                                        value={cityOfBirth} />
-                                </Item>
-                            </Row>
                             {show &&
                                 //need to confirm how to execute render and show for confirm
                                 (<Container>
@@ -196,6 +165,104 @@ export default function RegistrationScreen({ navigation }) {
                                     </Button>
                                 </Container>)
                             }
+                            <Row>
+                                <Col>
+                                    <Row>
+                                        <Text style={styles.titleStyle}>Gender</Text>
+                                    </Row>
+                                    <Row>
+                                        <Item picker>
+                                            <Picker
+                                                mode="dropdown"
+                                                iosIcon={<Icon name="arrow-down" />}
+                                                style={{ paddingLeft: 1 }}
+                                                placeholder="Gender"
+                                                placeholderStyle={{ color: "#bfc6ea" }}
+                                                placeholderIconColor="#007aff"
+                                                selectedValue={gender}
+                                                onValueChange={(text) => setGender(text)}
+                                            >
+                                                <Picker.Item label="Male" value="Male" />
+                                                <Picker.Item label="Female" value="Female" />
+                                            </Picker>
+                                        </Item>
+                                    </Row>
+                                </Col>
+                                <Col>
+                                    <Row>
+                                        <Text style={styles.titleStyle}> State</Text>
+                                    </Row>
+                                    <Row>
+                                        <Item picker>
+                                            <Picker
+                                                mode="dropdown"
+                                                iosIcon={<Icon name="arrow-down" />}
+                                                style={{ paddingLeft: 1 }}
+                                                placeholder="State"
+                                                placeholderStyle={{ color: "#bfc6ea" }}
+                                                placeholderIconColor="#007aff"
+                                                selectedValue={state}
+                                                onValueChange={(text) => setState(text)}
+                                            >
+                                                {states.states.map((state) => (
+                                                    <Picker.Item
+                                                        key={state.label}
+                                                        label={state.label}
+                                                        value={state.value}
+                                                    />
+                                                ))}
+                                            </Picker>
+                                        </Item>
+                                    </Row>
+                                </Col>
+                                <Col>
+                                    <Row>
+                                        <Text style={styles.titleStyle}>Age</Text>
+                                    </Row>
+                                    <Row>
+                                        <Item picker>
+                                            <Picker
+                                                mode="dropdown"
+                                                iosIcon={<Icon name="arrow-down" />}
+                                                style={{ paddingLeft: 1 }}
+                                                placeholder="Age"
+                                                placeholderStyle={{ color: "#bfc6ea" }}
+                                                placeholderIconColor="#007aff"
+                                                selectedValue={age}
+                                                onValueChange={(text) => setAge(text)}
+                                            >
+                                                {ageList(21, 60)}
+
+                                            </Picker>
+                                        </Item>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="city of Birth"
+                                        onChangeText={(text) => setCityOfBirth(text)}
+                                        placeholderTextColor="black"
+                                        value={cityOfBirth} />
+                                </Item>
+                            </Row>
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="Occupation"
+                                        onChangeText={(text) => setOccupation(text)}
+                                        placeholderTextColor="black"
+                                        value={occupation} />
+                                </Item>
+                            </Row>
+                            <Row>
+                                <Item regular style={styles.inputBox}>
+                                    <Input placeholder="Special Gift"
+                                        onChangeText={(text) => setSpecialGift(text)}
+                                        placeholderTextColor="black"
+                                        value={specialGift} />
+                                </Item>
+                            </Row>
+                            
                             <Row>
                                 <Item regular style={styles.inputBox}>
                                     <Input placeholder="email"
@@ -247,5 +314,11 @@ const styles = StyleSheet.create({
     buttonStyle: {
         backgroundColor: '#E53765',
         margin: 5
+    },
+    titleStyle: {
+        fontSize: 20,
+        textAlign: "center",
+        marginLeft: 17
+        // paddingLeft: 50
     }
 })
