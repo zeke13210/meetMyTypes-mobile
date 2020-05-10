@@ -1,20 +1,20 @@
 import axios from 'axios';
 
-function registerUser(userInfo) {
-  console.log('user info: ', userInfo);
+function registerUser(registrationInfo) {
+  console.log('registration: ', registrationInfo);
 
-  if (userInfo.email.length == 0) {
+  if (registrationInfo.email.length == 0) {
     console.log('email too short');
   }
   
   return new Promise(async function (resolve, reject) {
-    axios.post('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/login', { email: email, password: password })
+    axios.post('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/register', registrationInfo)
       .then(res => {
-        console.log(res.data.token)
-        token = res.data.token
-        resolve(res.data.token)
+        console.log("this is response: ", res.data.errorMessage)
+        //token = res.data.token
+        resolve(res)
       }).catch(err => {
-        console.log("Error logging in", err)
+        console.log("Error logging in", err.message)
         reject(err)
       })
   })}
