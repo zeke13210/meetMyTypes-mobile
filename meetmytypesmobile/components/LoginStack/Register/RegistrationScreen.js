@@ -24,11 +24,15 @@ export default function RegistrationScreen({ navigation }) {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-    const userInfo = {
+    const registrationInfo = {
         fullName: fullName,
         nickName: nickName,
         cityOfBirth: cityOfBirth,
         cityOfResidence: cityOfResidence,
+        stateOfBirth: state,
+        occupation: occupation,
+        specialGift: specialGift,
+        age: age.toString(),
         email: email,
         state: state,
         gender: gender,
@@ -56,6 +60,7 @@ export default function RegistrationScreen({ navigation }) {
     };
     const convertDateToTime = (mode) => {
         let time;
+        let date;
         if (dateTimeOfBirth.getHours() === 0) {
             //when hour is 0 show 12
             time = (dateTimeOfBirth.getHours() + 12) + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
@@ -67,7 +72,15 @@ export default function RegistrationScreen({ navigation }) {
         } else {
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
         }
-        let date = + (dateTimeOfBirth.getMonth() + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
+        console.log("inside if month: ", dateTimeOfBirth.getMonth())
+
+        if (dateTimeOfBirth.getMonth() < 9 ){
+            let dateMonth = "0" + dateTimeOfBirth.getMonth()
+            console.log("inside if statement: ", dateMonth)
+            date = (dateMonth + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
+        } else{
+            date = (dateTimeOfBirth.getMonth() + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
+        }
         if (mode === 'time') {
             setTime(time);
         } else if (mode === 'date') {
@@ -283,7 +296,7 @@ export default function RegistrationScreen({ navigation }) {
                             <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
-                            <Button style={styles.buttonStyle} block primary onPress={() => registerUser(userInfo)}>
+                            <Button style={styles.buttonStyle} block primary onPress={() => registerUser(registrationInfo)}>
                                 <Text>Submit</Text>
                             </Button>
                         </Form>
