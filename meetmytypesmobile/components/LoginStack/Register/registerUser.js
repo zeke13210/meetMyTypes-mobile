@@ -10,7 +10,7 @@ function registerUser(registrationInfo) {
   return new Promise(async function (resolve, reject) {
     axios.post('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/register', registrationInfo)
       .then(res => {
-        console.log("this is response: ", res.data.errorMessage)
+        console.log("this is response: ", res.data)
         //token = res.data.token
         resolve(res)
       }).catch(err => {

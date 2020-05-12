@@ -23,7 +23,7 @@ export default function RegistrationScreen({ navigation }) {
     const [dateOfBirth, setDate] = useState('Date?')
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-    const [registerResponse, setRegisterResponse] = useState({})
+    const [verified, setVerified] = useState(false)
 
     const registrationInfo = {
         fullName: fullName,
@@ -74,11 +74,9 @@ export default function RegistrationScreen({ navigation }) {
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
         }
 
-        if (dateTimeOfBirth.getMonth() < 9 ){
-            let dateMonth = "0" + dateTimeOfBirth.getMonth()
-            console.log("inside if statement: ", dateMonth)
-            date = (dateMonth + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
-        } else{
+        if (dateTimeOfBirth.getMonth() < 9) {
+            date = "0" + (dateTimeOfBirth.getMonth() + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
+        } else {
             date = (dateTimeOfBirth.getMonth() + 1) + "/" + dateTimeOfBirth.getDate() + "/" + dateTimeOfBirth.getFullYear()
         }
         if (mode === 'time') {
@@ -91,7 +89,7 @@ export default function RegistrationScreen({ navigation }) {
     const ageList = (ageMin, ageMax) => {
         content = []
         for (i = ageMin; i < ageMax; i++) {
-            content.push( <Picker.Item
+            content.push(<Picker.Item
                 key={i}
                 label={i}
                 value={i}
@@ -99,17 +97,66 @@ export default function RegistrationScreen({ navigation }) {
         }
         return content
     }
-    if(registerResponse.errorMessage){
-        console.log("This is error: ", registerResponse)
+    const submitForm = (registrationInfo) => {
+        console.log("Calling function verified: ", verified)
+
+        if (verified) {
+            registerUser(registrationInfo).then(res => {
+                console.log("Returned data: ", res.data)
+                if (res.data.hasOwnProperty('errorMessage')) {
+                    setVerified(false)
+                    setError(res.data.errorMessage)
+
+                } else {
+                    setSuccess("Successful signup")
+                }
+            }).catch(err => console.log("this is returned error: ", err))
+
+        } else {
+            console.log("inside else statement: ")
+
+            for (i = 0; i <= Object.keys(registrationInfo).length; i++) {
+                let key = Object.keys(registrationInfo)
+                let val = Object.values(registrationInfo)
+                if (val[i] === '') {
+                    let errText = key[i] + " is empty please fill it out"
+                    setError(errText)
+                    break;
+                }
+                if (key[i] === 'password') {
+                    if (val[i].length < 6) {
+                        let errText = key[i] + " too short please enter 6 characters"
+                        setError(errText)
+                        break;
+                    }
+                }
+                setVerified(true)
+            }
+            console.log("inside else statement verified: ", verified)
+
+        }
+
+    }
+
+    const setError = (errText) => {
         Toast.show({
-            text: registerResponse.errorMessage,
+            text: errText,
             buttonText: 'OK',
             position: 'top',
             type: 'danger',
             duration: 5000,
-          });
-        setRegisterResponse({})
+        });
     }
+    const setSuccess = (successText) => {
+        Toast.show({
+            text: successText,
+            buttonText: 'OK',
+            position: 'top',
+            type: 'success',
+            duration: 5000,
+        });
+    }
+
     const resetScreen = () => {
         setEmail('')
         setPassword('')
@@ -286,7 +333,7 @@ export default function RegistrationScreen({ navigation }) {
                                         value={specialGift} />
                                 </Item>
                             </Row>
-                            
+
                             <Row>
                                 <Item regular style={styles.inputBox}>
                                     <Input placeholder="email"
@@ -307,10 +354,7 @@ export default function RegistrationScreen({ navigation }) {
                             <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
-                            <Button style={styles.buttonStyle} block primary onPress={() => registerUser(registrationInfo).then(res => {
-                                console.log("Returned data: ", res.data)
-                                setRegisterResponse(res.data)
-                            }).catch(err => console.log("this is returned error: ", err))}>
+                            <Button style={styles.buttonStyle} block primary onPress={() => submitForm(registrationInfo)}>
                                 <Text>Submit</Text>
                             </Button>
                         </Form>
