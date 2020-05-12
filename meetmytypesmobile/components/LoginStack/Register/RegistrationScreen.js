@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Content, Text, Input, Item, Button, Form, Icon, Header, Picker } from 'native-base';
+import { Container, Content, Text, Input, Item, Button, Form, Icon, Header, Picker, Toast } from 'native-base';
 import { StyleSheet, View, TextInput, Image } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -23,6 +23,7 @@ export default function RegistrationScreen({ navigation }) {
     const [dateOfBirth, setDate] = useState('Date?')
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
+    const [registerResponse, setRegisterResponse] = useState({})
 
     const registrationInfo = {
         fullName: fullName,
@@ -72,7 +73,6 @@ export default function RegistrationScreen({ navigation }) {
         } else {
             time = dateTimeOfBirth.getHours() + ":" + dateTimeOfBirth.getMinutes() + " AM" //convert date to time string
         }
-        console.log("inside if month: ", dateTimeOfBirth.getMonth())
 
         if (dateTimeOfBirth.getMonth() < 9 ){
             let dateMonth = "0" + dateTimeOfBirth.getMonth()
@@ -98,6 +98,17 @@ export default function RegistrationScreen({ navigation }) {
             />)
         }
         return content
+    }
+    if(registerResponse.errorMessage){
+        console.log("This is error: ", registerResponse)
+        Toast.show({
+            text: registerResponse.errorMessage,
+            buttonText: 'OK',
+            position: 'top',
+            type: 'danger',
+            duration: 5000,
+          });
+        setRegisterResponse({})
     }
     const resetScreen = () => {
         setEmail('')
@@ -296,7 +307,10 @@ export default function RegistrationScreen({ navigation }) {
                             <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
-                            <Button style={styles.buttonStyle} block primary onPress={() => registerUser(registrationInfo)}>
+                            <Button style={styles.buttonStyle} block primary onPress={() => registerUser(registrationInfo).then(res => {
+                                console.log("Returned data: ", res.data)
+                                setRegisterResponse(res.data)
+                            }).catch(err => console.log("this is returned error: ", err))}>
                                 <Text>Submit</Text>
                             </Button>
                         </Form>
