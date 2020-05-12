@@ -104,11 +104,11 @@ export default function RegistrationScreen({ navigation }) {
             registerUser(registrationInfo).then(res => {
                 console.log("Returned data: ", res.data)
                 if (res.data.hasOwnProperty('errorMessage')) {
-                    setVerified(false)
+                    //setVerified(false)
                     setError(res.data.errorMessage)
 
                 } else {
-                    setSuccess("Successful signup")
+                    setSuccess("Successful signup. Please verify your account with the provided email address")
                 }
             }).catch(err => console.log("this is returned error: ", err))
 
@@ -130,10 +130,11 @@ export default function RegistrationScreen({ navigation }) {
                         break;
                     }
                 }
-                setVerified(true)
+                console.log("index: ", i)
+                if(i == Object.keys(registrationInfo).length){
+                    setVerified(true)
+                }
             }
-            console.log("inside else statement verified: ", verified)
-
         }
 
     }
@@ -155,6 +156,7 @@ export default function RegistrationScreen({ navigation }) {
             type: 'success',
             duration: 5000,
         });
+        navigation.navigate('Login')
     }
 
     const resetScreen = () => {
