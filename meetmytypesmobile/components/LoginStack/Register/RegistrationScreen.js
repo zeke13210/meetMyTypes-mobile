@@ -159,7 +159,7 @@ export default function RegistrationScreen({ navigation }) {
         setCityOfBirth(null)
         setCityOfResidence(null)
         setNickName(null)
-        setAge(null)
+        setAge('')
         setOccupation(null)
         setSpecialGift(null)
     }
