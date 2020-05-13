@@ -131,7 +131,7 @@ export default function RegistrationScreen({ navigation }) {
                     }
                 }
                 console.log("index: ", i)
-                if(i == Object.keys(registrationInfo).length){
+                if (i == Object.keys(registrationInfo).length) {
                     setVerified(true)
                 }
             }
