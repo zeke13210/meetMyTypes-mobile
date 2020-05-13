@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Content, Text, Input, Item, Button, Form, Icon, Header, Picker, Toast } from 'native-base';
 import { StyleSheet, View, TextInput, Image } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -7,17 +7,17 @@ import states from './sates.json'
 import registerUser from './registerUser';
 
 export default function RegistrationScreen({ navigation }) {
-    const [fullName, setFullName] = useState('')
-    const [nickName, setNickName] = useState('')
-    const [cityOfBirth, setCityOfBirth] = useState('')
-    const [cityOfResidence, setCityOfResidence] = useState('')
-    const [email, setEmail] = useState('')
-    const [gender, setGender] = useState('')
+    const [fullName, setFullName] = useState(null)
+    const [nickName, setNickName] = useState(null)
+    const [cityOfBirth, setCityOfBirth] = useState(null)
+    const [cityOfResidence, setCityOfResidence] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [gender, setGender] = useState(null)
     const [age, setAge] = useState('')
-    const [occupation, setOccupation] = useState('')
-    const [specialGift, setSpecialGift] = useState('')
+    const [occupation, setOccupation] = useState(null)
+    const [specialGift, setSpecialGift] = useState(null)
     const [state, setState] = useState('')
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState(null)
     const [dateTimeOfBirth, setDateOfBirth] = useState(new Date())
     const [timeOfBirth, setTime] = useState('Time?')
     const [dateOfBirth, setDate] = useState('Date?')
@@ -97,46 +97,35 @@ export default function RegistrationScreen({ navigation }) {
         }
         return content
     }
-    const submitForm = (registrationInfo) => {
-        console.log("Calling function verified: ", verified)
-
-        if (verified) {
-            registerUser(registrationInfo).then(res => {
-                console.log("Returned data: ", res.data)
-                if (res.data.hasOwnProperty('errorMessage')) {
-                    //setVerified(false)
-                    setError(res.data.errorMessage)
-
-                } else {
-                    setSuccess("Successful signup. Please verify your account with the provided email address")
-                }
-            }).catch(err => console.log("this is returned error: ", err))
-
-        } else {
-            console.log("inside else statement: ")
-
-            for (i = 0; i <= Object.keys(registrationInfo).length; i++) {
-                let key = Object.keys(registrationInfo)
-                let val = Object.values(registrationInfo)
-                if (val[i] === '') {
-                    let errText = key[i] + " is empty please fill it out"
-                    setError(errText)
-                    break;
-                }
-                if (key[i] === 'password') {
-                    if (val[i].length < 6) {
-                        let errText = key[i] + " too short please enter 6 characters"
-                        setError(errText)
-                        break;
-                    }
-                }
-                console.log("index: ", i)
-                if (i == Object.keys(registrationInfo).length) {
-                    setVerified(true)
-                }
-            }
+    useEffect(() => {
+        //if all fields filled out enable btn
+        if (email !== null &&
+            password !== null &&
+            age !== '' &&
+            nickName !== null &&
+            state !== null &&
+            occupation !== null &&
+            cityOfResidence !== null &&
+            cityOfBirth !== null &&
+            specialGift !== null &&
+            gender !== null &&
+            dateOfBirth !== 'Date?' &&
+            timeOfBirth !== 'Time?') {
+            setVerified(true)
         }
+    })
+    const submitForm = (registrationInfo) => {
 
+        registerUser(registrationInfo).then(res => {
+            console.log("Returned data: ", res.data)
+            if (res.data.hasOwnProperty('errorMessage')) {
+                //setVerified(false)
+                setError(res.data.errorMessage)
+
+            } else {
+                setSuccess("Successful signup. Please verify your account with the provided email address")
+            }
+        }).catch(err => console.log("this is returned error: ", err))
     }
 
     const setError = (errText) => {
@@ -160,19 +149,19 @@ export default function RegistrationScreen({ navigation }) {
     }
 
     const resetScreen = () => {
-        setEmail('')
-        setPassword('')
+        setEmail(null)
+        setPassword(null)
         setTime("Time?")
         setDate("Date?")
-        setState('')
-        setGender('')
-        setFullName('')
-        setCityOfBirth('')
-        setCityOfResidence('')
-        setNickName('')
-        setAge('')
-        setOccupation('')
-        setSpecialGift('')
+        setState(null)
+        setGender(null)
+        setFullName(null)
+        setCityOfBirth(null)
+        setCityOfResidence(null)
+        setNickName(null)
+        setAge(null)
+        setOccupation(null)
+        setSpecialGift(null)
     }
     return (
         <Container>
@@ -356,9 +345,12 @@ export default function RegistrationScreen({ navigation }) {
                             <Button style={styles.buttonStyle} block primary onPress={() => resetScreen()}>
                                 <Text>Clear Input</Text>
                             </Button>
-                            <Button style={styles.buttonStyle} block primary onPress={() => submitForm(registrationInfo)}>
+                            {verified ? (<Button style={styles.buttonStyle} block success onPress={() => submitForm(registrationInfo)}>
                                 <Text>Submit</Text>
-                            </Button>
+                            </Button>) : (<Button block disabled>
+                                <Text>Submit</Text>
+                            </Button>)}
+
                         </Form>
                     </Col>
 
