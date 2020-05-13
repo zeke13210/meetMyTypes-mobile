@@ -10,9 +10,9 @@ function loginUser(email, password) {
   return new Promise(async function (resolve, reject) {
     axios.post('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/login', { email: email, password: password })
       .then(res => {
-        console.log(res.data.token)
-        token = res.data.token
-        resolve(res.data.token)
+        console.log("Response data: ", res.data)
+        //token = res.data.token
+        resolve(res)
       }).catch(err => {
         console.log("Error logging in", err)
         reject(err)

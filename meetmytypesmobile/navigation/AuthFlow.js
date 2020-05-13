@@ -1,14 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainAppNavigator from './MainAppNavigator';
 import LoginStack from './LoginNavigator'
 import AsyncStorage from '@react-native-community/async-storage';
-
+import { Root } from 'native-base'
 
 function AuthFlow() {
   const [isLoading, setLoadingState] = useState(true)
   const [userToken, setUserToken] = useState(null)
-  React.useEffect(() => {
+  useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
 
     AsyncStorage.getItem('TOKEN').then(data => {
@@ -22,10 +22,14 @@ function AuthFlow() {
 
   })
   return (
-    <NavigationContainer>
-    {/*  {userToken == null ? (<LoginStack />) : (<MainAppNavigator />)} */}
-    <LoginStack/>
-    </NavigationContainer>
+    <Root>
+
+      <NavigationContainer>
+        {/*  {userToken == null ? (<LoginStack />) : (<MainAppNavigator />)} */}
+        <LoginStack />
+      </NavigationContainer>
+    </Root>
+
   )
 }
 

@@ -1,67 +1,109 @@
 /* eslint-disable prettier/prettier */
-import React, {Component} from 'react';
-import {Toast, Button} from 'native-base';
-import {StyleSheet, View, Text, TextInput, Image} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Toast, Button } from 'native-base';
+import { StyleSheet, View, Text, TextInput, Image } from 'react-native';
 import loginUser from './loginUser';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default function LoginScreen({ navigation }) {
-    const [email, onChangeEmail] = React.useState()
-    const [password, onChangePassword] = React.useState()
-    const [token, setToken] = React.useState(null)
-    if(token == null){
-      console.log("This is token: ", token)
-    } else{
-      console.log("This is current token: ", token)
-      AsyncStorage.setItem('TOKEN', token).then(res =>{
-        console.log("Token set in storage", res)
-      }).catch(err => {
-        console.log("Error storing token: ", err)
-      })
+  const [email, onChangeEmail] = useState(null)
+  const [password, onChangePassword] = useState(null)
+  const [token, setToken] = useState('')
+  const [verified, setVerified] = useState(false)
 
+  if (token === null) {
+    console.log("This is token: ", token)
+  } else {
+    console.log("This is current token: ", token)
+    AsyncStorage.setItem('TOKEN', token).then(res => {
+      console.log("Token set in storage", res)
+    }).catch(err => {
+      console.log("Error storing token: ", err)
+    })
+
+  }
+  useEffect(() => {
+    if (email !== null && password !== null) {
+      setVerified(true)
     }
-    return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Email"
-          placeholderTextColor="black"
-          onChangeText={(text) => onChangeEmail(text)}
-          value={email}
-        />
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Password"
-          placeholderTextColor="black"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => onChangePassword(text)}
-        />
-        <Button block success style={styles.button} 
-        onPress={() =>loginUser(email, password).then(data => {
-          setToken(data)
-        }).catch(err => setToken(err))}>
+  })
+  const submitForm = (email, password) => {
+    loginUser(email, password).then(res => {
+      console.log("Error: ", res)
 
-          <Text
-            style={styles.buttonText}>
-            LOGIN
+      if (res.data.hasOwnProperty('errorMessage')) {
+        console.log("Error: ", res.data.errorMessage)
+        setError(res.data.errorMessage)
+      } else {
+        setSuccess("Logging in")
+        setToken(res.data.token)
+      }
+    }).catch(err => setToken(err))
+  }
+  const setError = (errText) => {
+    Toast.show({
+      text: errText,
+      buttonText: 'OK',
+      position: 'top',
+      type: 'danger',
+      duration: 5000,
+    });
+  }
+  const setSuccess = (successText) => {
+    Toast.show({
+      text: successText,
+      buttonText: 'OK',
+      position: 'top',
+      type: 'success',
+      duration: 5000,
+    });
+    navigation.navigate('Login')
+  }
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Email"
+        placeholderTextColor="black"
+        onChangeText={(text) => onChangeEmail(text)}
+        value={email}
+      />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Password"
+        placeholderTextColor="black"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={(text) => onChangePassword(text)}
+      />
+      {verified ? (<Button block success style={styles.button}
+        onPress={() => submitForm(email, password)}>
+        <Text
+          style={styles.buttonText}>
+          LOGIN
           </Text>
-        </Button>
-        <View>
-          <Text
-            style={styles.signUpText}
-            onPress={() => navigation.navigate('Register')}>
-            Don't have an account yet? Sign Up
+      </Button>) : (<Button block disabled>
+        <Text
+          style={styles.buttonText}>
+          LOGIN
           </Text>
-        </View>
-        <Image
-          source={require('../../../assets/meetmytypes-logo.png')}
-          style={styles.logo}
-        />
+      </Button>)}
+
+      <View>
+        <Text
+          style={styles.signUpText}
+          onPress={() => navigation.navigate('Register')}>
+          Don't have an account yet? Sign Up
+          </Text>
       </View>
-    );
-  
+      <Image
+        source={require('../../../assets/meetmytypes-logo.png')}
+        style={styles.logo}
+      />
+    </View >
+  );
+
 }
 
 const styles = StyleSheet.create({
