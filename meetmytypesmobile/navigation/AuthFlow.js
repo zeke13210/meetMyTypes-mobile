@@ -23,10 +23,8 @@ function AuthFlow() {
   })
   return (
     <Root>
-
       <NavigationContainer>
-        {/*  {userToken == null ? (<LoginStack />) : (<MainAppNavigator />)} */}
-        <LoginStack />
+        {userToken == null ? (<LoginStack />) : (<MainAppNavigator />)}
       </NavigationContainer>
     </Root>
 

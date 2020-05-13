@@ -12,16 +12,14 @@ export default function LoginScreen({ navigation }) {
   const [token, setToken] = useState('')
   const [verified, setVerified] = useState(false)
 
-  if (token === null) {
-    console.log("This is token: ", token)
-  } else {
+
+  const storeToken = (token) => {
     console.log("This is current token: ", token)
     AsyncStorage.setItem('TOKEN', token).then(res => {
       console.log("Token set in storage", res)
     }).catch(err => {
       console.log("Error storing token: ", err)
     })
-
   }
   useEffect(() => {
     if (email !== null && password !== null) {
@@ -38,6 +36,7 @@ export default function LoginScreen({ navigation }) {
       } else {
         setSuccess("Logging in")
         setToken(res.data.token)
+        storeToken(token)
       }
     }).catch(err => setToken(err))
   }
