@@ -27,9 +27,9 @@ function CustomDrawer({...props}){
   return(
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props}/>
-        <DrawerItem label="Home" 
+        <DrawerItem label="Lougout" 
           onPress={()=> props.navigation.navigate('Home')} 
-          icon={({focused, color, size}) =>(<Icon color={color} name="ios-home"/>)} />
+          icon={({focused, color, size}) =>(<Icon color={color} name="ios-log-out"/>)} />
     </DrawerContentScrollView>
   )
 }
@@ -38,7 +38,7 @@ const Drawer = createDrawerNavigator();
 export default function DrawExample() {
   return (
       <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props}/>}>
-        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Home" component={HomeScreen} options={{drawerIcon:({focused, color, size}) =>(<Icon color={color} name="alarm"/>)}} />
         <Drawer.Screen name="Main" component={MainAppNavigator} />
       </Drawer.Navigator>
   );
