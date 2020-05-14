@@ -66,24 +66,13 @@ function MainAppNavigator() {
       screenOptions={({route }) => ({
         tabBarIcon: ({focused, size, color}) => {
           let iconName = {
-            Profile: focused ? ('ios-person') : ('ios-person-add'),
+            Profile: 'ios-person',
             MatchRequest : 'ios-contacts',
             UserList: 'ios-people',
             Matches: 'ios-heart-empty'
           }
 
-          color = focused ? ('#E53765') : ('black')
-         /* if (route.name === 'Profile') {
-            iconName = focused ? 'ios-information-circle': 'ios-information-circle-outline';
-          }else if (route.name === 'MatchRequest') {
-            iconName = focused ? 'ios-person' : 'ios-person-add';
-          } else if (route.name === 'UserList') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
-          }else if (route.name === 'Matches') {
-            iconName = focused ? 'ios-people' : 'ios-people';
-          } */
-        
-          // You can return any component that you like here!
+          color = focused ? ('#E53765') : ('gray')
           return <Icon name={iconName[route.name]} size={size} style={{color: color}} />
         },
       })}
