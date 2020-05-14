@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 export default function LoginStack() {
   return (
     <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen name="Login" component={LoginScreen} headerTitle="Test" />
+      <Stack.Screen name="Login" component={LoginScreen}/>
       <Stack.Screen name="Register" component={RegistrationScreen} />
     </Stack.Navigator>
   );
