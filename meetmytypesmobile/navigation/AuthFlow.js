@@ -4,6 +4,7 @@ import MainAppNavigator from './MainAppNavigator';
 import LoginStack from './LoginNavigator'
 import AsyncStorage from '@react-native-community/async-storage';
 import { Root } from 'native-base'
+import DrawExample from '../components/DrawExample';
 
 function AuthFlow() {
   const [isLoading, setLoadingState] = useState(true)
@@ -24,7 +25,10 @@ function AuthFlow() {
   return (
     <Root>
       <NavigationContainer>
-        {userToken == null ? (<LoginStack />) : (<MainAppNavigator />)}
+        {/*{userToken == null ? (<LoginStack />) : (<MainAppNavigator />)}*/}
+        <DrawExample/>
+
+        {/**/}
       </NavigationContainer>
     </Root>
 
