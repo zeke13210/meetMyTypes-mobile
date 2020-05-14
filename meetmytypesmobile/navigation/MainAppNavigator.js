@@ -34,19 +34,59 @@ const header = ({ scene, previous, navigation }) => {
     </Header>
   );
 };
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
+const MyTabIcons =({focused, size, color}) => {
+  let iconName;
+
+  if (route.name === 'Profile') {
+    iconName = props.focused
+      ? 'ios-information-circle'
+      : 'ios-information-circle-outline';
+  } else if (route.name === 'UserList') {
+    iconName = props.focused ? 'ios-list-box' : 'ios-list';
+  }
+
+  // You can return any component that you like here!
+  return <Icon name={iconName} size={props.size} color={props.color} />
+}
+const tabStyle = {
+  activeBackgroundColor: 'white',
+  activeTintColor: 'black',
+  inactiveTintColor: 'white',
+  style: {
+    backgroundColor: '#E53765',
+    
+  },
+  labelStyle: {
+    fontSize: 15
+  }
 }
 function MainAppNavigator() {
   return (
-    <Tab.Navigator screenOptions={({navigation}) =>({
-      tabBarIcon: ({focused, color, size}) => (<Icon name="alarm"/>),
-      
-    })} tabBarOptions={{style: {backgroundColor: '#E53765'}, labelStyle: {color: 'white'}}}>
+    <Tab.Navigator
+      screenOptions={({route }) => ({
+        tabBarIcon: ({focused, size, color}) => {
+          let iconName = {
+            Profile: 'ios-person',
+            MatchRequest : 'ios-contacts',
+            UserList: 'ios-people',
+            Matches: 'ios-heart'
+          }
+         /* if (route.name === 'Profile') {
+            iconName = focused ? 'ios-information-circle': 'ios-information-circle-outline';
+          }else if (route.name === 'MatchRequest') {
+            iconName = focused ? 'ios-person' : 'ios-person-add';
+          } else if (route.name === 'UserList') {
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }else if (route.name === 'Matches') {
+            iconName = focused ? 'ios-people' : 'ios-people';
+          } */
+        
+          // You can return any component that you like here!
+          return <Icon name={iconName[route.name]} size={size} color={color} />
+        },
+      })}
+      tabBarOptions={tabStyle}
+    >
       <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="MatchRequest" component={MatchRequest} />
       <Tab.Screen name="UserList" component={UserList} />
