@@ -8,7 +8,9 @@ export default class ProfileScreen extends Component {
             <Container>
                 <Header>
                     <Left>
-                       
+                        <Button transparent>
+                            <Icon onPress={()=> this.props.navigation.toggleDrawer()} name="md-menu" />
+                        </Button>
                     </Left>
                 </Header>
                 <Content contentContainerStyle={styles.container}>
