@@ -49,11 +49,11 @@ const MyTabIcons =({focused, size, color}) => {
   return <Icon name={iconName} size={props.size} color={props.color} />
 }
 const tabStyle = {
-  activeBackgroundColor: 'white',
-  activeTintColor: 'black',
-  inactiveTintColor: 'white',
+  //activeBackgroundColor: '#E53765',
+  activeTintColor: '#E53765',
+  inactiveTintColor: 'gray',
   style: {
-    backgroundColor: '#E53765',
+    backgroundColor: 'white',
     
   },
   labelStyle: {
@@ -66,11 +66,13 @@ function MainAppNavigator() {
       screenOptions={({route }) => ({
         tabBarIcon: ({focused, size, color}) => {
           let iconName = {
-            Profile: 'ios-person',
+            Profile: focused ? ('ios-person') : ('ios-person-add'),
             MatchRequest : 'ios-contacts',
             UserList: 'ios-people',
-            Matches: 'ios-heart'
+            Matches: 'ios-heart-empty'
           }
+
+          color = focused ? ('#E53765') : ('black')
          /* if (route.name === 'Profile') {
             iconName = focused ? 'ios-information-circle': 'ios-information-circle-outline';
           }else if (route.name === 'MatchRequest') {
@@ -82,7 +84,7 @@ function MainAppNavigator() {
           } */
         
           // You can return any component that you like here!
-          return <Icon name={iconName[route.name]} size={size} color={color} />
+          return <Icon name={iconName[route.name]} size={size} style={{color: color}} />
         },
       })}
       tabBarOptions={tabStyle}
