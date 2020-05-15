@@ -6,31 +6,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
-import { Container, Content, Text, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-import DrawExample from '../components/DrawExample';
+import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 const Tab = createBottomTabNavigator();
 //const Drawer = createDrawerNavigator();
 
-const header = ({ scene, previous, navigation }) => {
-  const { options } = scene.descriptor;
-  const title =
-    options.headerTitle !== undefined
-      ? options.headerTitle
-      : options.title !== undefined
-        ? options.title
-        : scene.route.name;
+function CustomHeader(props) {
+
 
   return (
     <Header>
       <Right>
-        <Button onPress={navigation.goBack}>
           <Icon name='md-menu' />
-        </Button>
       </Right>
-      <Body>
-        <Title>{title}</Title>
-      </Body>
+      <Title>{props.route.name}</Title>
     </Header>
   );
 };
@@ -79,7 +68,7 @@ function MainAppNavigator() {
       tabBarOptions={tabStyle}
     >
       <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="MatchRequest" component={MatchRequest} />
+      <Tab.Screen name="MatchRequest" component={MatchRequest}/>
       <Tab.Screen name="UserList" component={UserList} />
       <Tab.Screen name="Matches" component={ConfirmedMatch} />
     </Tab.Navigator>
