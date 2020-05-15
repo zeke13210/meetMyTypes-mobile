@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Content, Text, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 export default class MatchRequestScreen extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>match request Component</Text>
-            </View>)
+            <Container>
+                <Header>
+                    <Left>
+                        <Button transparent>
+                            <Icon onPress={() => this.props.navigation.toggleDrawer()} name="md-menu" />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>{this.props.route.name}</Title>
+                    </Body>
+                    <Right/>
+                </Header>
+                <Content contentContainerStyle={styles.container}>
+                    <Text>Profile Component</Text>
+                </Content>
+            </Container>
+            )
     }
 }
 

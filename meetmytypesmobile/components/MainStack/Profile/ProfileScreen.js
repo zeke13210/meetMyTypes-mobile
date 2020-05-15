@@ -9,15 +9,17 @@ export default class ProfileScreen extends Component {
                 <Header>
                     <Left>
                         <Button transparent>
-                            <Icon onPress={()=> this.props.navigation.toggleDrawer()} name="md-menu" />
+                            <Icon onPress={() => this.props.navigation.toggleDrawer()} name="md-menu" />
                         </Button>
                     </Left>
+                    <Body>
+                        <Title>{this.props.route.name}</Title>
+                    </Body>
+                    <Right/>
                 </Header>
                 <Content contentContainerStyle={styles.container}>
                     <Text>Profile Component</Text>
-
                 </Content>
-
             </Container>
         )
     }
