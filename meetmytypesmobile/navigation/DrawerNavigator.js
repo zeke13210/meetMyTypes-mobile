@@ -8,13 +8,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { AuthContext } from './context';
 
 
-export default function CustomDrawer({ ...props }) {
+const Drawer = createDrawerNavigator();
+
+export default function DrawerNavigator() {
   const { signOut } = React.useContext(AuthContext);
 
   async function logOut() {
-
     try {
-      signOut()
+      signOut() //call function from AuthFlow
       await AsyncStorage.removeItem('TOKEN')
       console.log("Success removing token from storage")
     } catch (e) {
@@ -22,23 +23,20 @@ export default function CustomDrawer({ ...props }) {
     }
 
   }
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem label="Lougout"
-        onPress={() => logOut()}
-        icon={({ focused, color, size }) => (<Icon color={color} name="ios-log-out" />)} />
-    </DrawerContentScrollView>
-  )
-}
-const Drawer = createDrawerNavigator();
+  function CustomDrawer({ ...props }) {
+    return (
+      <DrawerContentScrollView {...props}>
+        <DrawerItemList {...props} />
+        <DrawerItem label="Lougout"
+          onPress={() => logOut()}
+          icon={({ focused, color, size }) => (<Icon color={color} name="ios-log-out" />)} />
+      </DrawerContentScrollView>
+    )
+  }
 
-/*export default function DrawerNavigator() {
-  const { signOut } = React.useContext(AuthContext);
-  //const [ token, setToken] = useState(null)
   return (
-      <Drawer.Navigator drawerType="slide" drawerContent={(props) => <CustomDrawer {...props}/>}>
-        <Drawer.Screen name="Main" component={MainAppNavigator} />
-      </Drawer.Navigator>
+    <Drawer.Navigator drawerType="slide" drawerContent={(props) => <CustomDrawer {...props} />}>
+      <Drawer.Screen name="Main" component={MainAppNavigator} />
+    </Drawer.Navigator>
   );
-} */
+} 
