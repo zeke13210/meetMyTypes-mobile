@@ -9,34 +9,7 @@ import React from 'react';
 import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 const Tab = createBottomTabNavigator();
-//const Drawer = createDrawerNavigator();
 
-function CustomHeader(props) {
-
-
-  return (
-    <Header>
-      <Right>
-          <Icon name='md-menu' />
-      </Right>
-      <Title>{props.route.name}</Title>
-    </Header>
-  );
-};
-const MyTabIcons =({focused, size, color}) => {
-  let iconName;
-
-  if (route.name === 'Profile') {
-    iconName = props.focused
-      ? 'ios-information-circle'
-      : 'ios-information-circle-outline';
-  } else if (route.name === 'UserList') {
-    iconName = props.focused ? 'ios-list-box' : 'ios-list';
-  }
-
-  // You can return any component that you like here!
-  return <Icon name={iconName} size={props.size} color={props.color} />
-}
 const tabStyle = {
   //activeBackgroundColor: '#E53765',
   activeTintColor: '#E53765',
