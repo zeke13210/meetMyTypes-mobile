@@ -18,35 +18,35 @@ export default function LoginScreen({ navigation, props }) {
     console.log("This is current token: ", token)
     try {
       await AsyncStorage.setItem('TOKEN', token)
-      props.updateToken(token)
       console.log("success storing token: ")
-
     } catch (e) {
       console.log("Error storing token: ", e)
     }
   }
+
   useEffect(() => {
     if (email !== null && password !== null) {
+      //enable btn to submit
       setVerified(true)
     }
-    if(token !== ''){
-
-    }
   })
+
   const submitForm = (email, password) => {
     loginUser(email, password).then(res => {
-      console.log("Error: ", res)
-
       if (res.data.hasOwnProperty('errorMessage')) {
-        console.log("Error: ", res.data.errorMessage)
-        setError(res.data.errorMessage)
+
+        setError(res.data.errorMessage) //show error msg
+
       } else {
-        setSuccess("Logging in")
-        setToken(res.data.token)
-        storeToken(token)
+
+        setSuccess("Logging in") //show success msg
+        setToken(res.data.token) //send token to hook
+        storeToken(token) //store token to device
+        signIn(res.data.token) //send token Auth component
       }
-    }).catch(err => setToken(err))
+    }).catch(err => console.log("Error pulling data: ", err))
   }
+
   const setError = (errText) => {
     Toast.show({
       text: errText,
@@ -56,13 +56,14 @@ export default function LoginScreen({ navigation, props }) {
       duration: 5000,
     });
   }
+  
   const setSuccess = (successText) => {
     Toast.show({
       text: successText,
       buttonText: 'OK',
       position: 'top',
       type: 'success',
-      duration: 5000,
+      duration: 2000,
     });
     navigation.navigate('Login')
   }
@@ -84,7 +85,7 @@ export default function LoginScreen({ navigation, props }) {
         onChangeText={(text) => onChangePassword(text)}
       />
       {verified ? (<Button block success style={styles.button}
-        onPress={() => signIn() }>
+        onPress={() => submitForm(email, password) }>
         <Text
           style={styles.buttonText}>
           LOGIN
