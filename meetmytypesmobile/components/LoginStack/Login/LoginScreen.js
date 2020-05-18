@@ -4,42 +4,49 @@ import { Toast, Button } from 'native-base';
 import { StyleSheet, View, Text, TextInput, Image } from 'react-native';
 import loginUser from './loginUser';
 import AsyncStorage from '@react-native-community/async-storage';
+import { AuthContext } from '../../../navigation/context';
 
-
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation, props }) {
   const [email, onChangeEmail] = useState(null)
   const [password, onChangePassword] = useState(null)
   const [token, setToken] = useState('')
   const [verified, setVerified] = useState(false)
+  const { signIn } = React.useContext(AuthContext);
+  
 
-
-  const storeToken = (token) => {
+  const storeToken = async (token) => {
     console.log("This is current token: ", token)
-    AsyncStorage.setItem('TOKEN', token).then(res => {
-      console.log("Token set in storage", res)
-    }).catch(err => {
-      console.log("Error storing token: ", err)
-    })
+    try {
+      await AsyncStorage.setItem('TOKEN', token)
+      console.log("success storing token: ")
+    } catch (e) {
+      console.log("Error storing token: ", e)
+    }
   }
+
   useEffect(() => {
     if (email !== null && password !== null) {
+      //enable btn to submit
       setVerified(true)
     }
   })
+
   const submitForm = (email, password) => {
     loginUser(email, password).then(res => {
-      console.log("Error: ", res)
-
       if (res.data.hasOwnProperty('errorMessage')) {
-        console.log("Error: ", res.data.errorMessage)
-        setError(res.data.errorMessage)
+
+        setError(res.data.errorMessage) //show error msg
+
       } else {
-        setSuccess("Logging in")
-        setToken(res.data.token)
-        storeToken(token)
+
+        setSuccess("Logging in") //show success msg
+        setToken(res.data.token) //send token to hook
+        storeToken(token) //store token to device
+        signIn(res.data.token) //send token Auth component
       }
-    }).catch(err => setToken(err))
+    }).catch(err => console.log("Error pulling data: ", err))
   }
+
   const setError = (errText) => {
     Toast.show({
       text: errText,
@@ -49,13 +56,14 @@ export default function LoginScreen({ navigation }) {
       duration: 5000,
     });
   }
+  
   const setSuccess = (successText) => {
     Toast.show({
       text: successText,
       buttonText: 'OK',
       position: 'top',
       type: 'success',
-      duration: 5000,
+      duration: 2000,
     });
     navigation.navigate('Login')
   }
@@ -77,7 +85,7 @@ export default function LoginScreen({ navigation }) {
         onChangeText={(text) => onChangePassword(text)}
       />
       {verified ? (<Button block success style={styles.button}
-        onPress={() => submitForm(email, password)}>
+        onPress={() => submitForm(email, password) }>
         <Text
           style={styles.buttonText}>
           LOGIN

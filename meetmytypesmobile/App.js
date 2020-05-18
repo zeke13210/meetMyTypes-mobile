@@ -11,7 +11,6 @@ import MainAppNavigator from './navigation/MainAppNavigator';
 import LoginNavigator from './navigation/LoginNavigator';
 import SplashScreen from './SplashScreen';
 import AuthFlow from './navigation/AuthFlow';
-
 export default class App extends Component {
 
   constructor(props) {

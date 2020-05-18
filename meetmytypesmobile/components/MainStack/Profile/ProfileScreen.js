@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Container, Content, Text, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 export default class ProfileScreen extends Component {
     render() {
         return (
-            <View style= {styles.container}>
-                
-                <Text>Profile Component</Text>
-
-            </View>
+            <Container>
+                <Header>
+                    <Left>
+                        <Button transparent>
+                            <Icon onPress={() => this.props.navigation.toggleDrawer()} name="md-menu" />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>{this.props.route.name}</Title>
+                    </Body>
+                    <Right/>
+                </Header>
+                <Content contentContainerStyle={styles.container}>
+                    <Text>Profile Component</Text>
+                </Content>
+            </Container>
         )
     }
 }
