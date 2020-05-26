@@ -1,8 +1,9 @@
 import React, { useState, Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 //import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios'
 import { Container, Content, Text, Header, Left, Icon, Body, Right, Title } from 'native-base';
-
+import AsyncStorage from '@react-native-community/async-storage'
 import {
   Avatar,
   Button,
@@ -23,11 +24,12 @@ export default class ProfileScreen extends Component {
   }
 
   async componentDidMount() {
-    const response = await fetch(
-      'https://qj87hoxzmk.execute-api.us-east-1.amazonaws.com/Dev/currentUsers/1200',
-    );
-    const body = await response.json();
-    this.setState({ data: body, isloading: false });
+    let token = await AsyncStorage.getItem('TOKEN')
+    console.log("Token: ", token)
+    const response = await axios.get(`https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/profile/${token}`)
+
+    //const body = await response.json();
+    this.setState({ data: response.data.data, isloading: false });
   }
 
   render() {
@@ -67,22 +69,16 @@ export default class ProfileScreen extends Component {
               )}
             />
             <Card.Content>
-              <View
-                style={{ justifyContent: 'center', margin: 5, marginLeft: 220 }}>
+              <View style={{ justifyContent: 'center', margin: 5, marginLeft: 220 }}>
                 <Title>{data.Nickname}</Title>
                 <Subheading>{data.LoveType}</Subheading>
               </View>
               <Card.Actions
                 style={{ justifyContent: 'center', margin: 20, marginLeft: 200 }}>
-                <Button
-                  mode="contained"
-                  onPress={() => console.log('pressed')}
-                  color="red">
-                  Edit Profile
-              </Button>
+                
               </Card.Actions>
               <View style={styles.lineStyle} />
-              {data ? (
+              {data.Top4LoveTypes ? (
                 <View>
                   <List.Section
                     style={{
@@ -146,5 +142,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-}
+  }
 });
