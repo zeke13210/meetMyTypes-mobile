@@ -6,7 +6,7 @@ import MainAppNavigator from './MainAppNavigator'
 import { Container, Content, Text, Header, Left, Body, Right, Icon, Title } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthContext } from './context';
-
+import AppStack from './AppStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,7 +36,7 @@ export default function DrawerNavigator() {
 
   return (
     <Drawer.Navigator drawerType="slide" drawerContent={(props) => <CustomDrawer {...props} />}>
-      <Drawer.Screen name="Main" component={MainAppNavigator} />
+      <Drawer.Screen name="Main" component={AppStack} />
     </Drawer.Navigator>
   );
 } 

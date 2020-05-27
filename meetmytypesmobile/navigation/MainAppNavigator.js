@@ -1,7 +1,7 @@
 import Profile from '../components/MainStack/Profile/ProfileScreen';
 import MatchRequest from '../components/MainStack/matchRequest/MatchRequestScreen';
 import ConfirmedMatch from '../components/MainStack/confirmedMatches/MatchScreen';
-import UserList from '../components/MainStack/userList/UserListScreen';
+import UserListStack from '../components/MainStack/userList/UserListStack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -33,7 +33,6 @@ function MainAppNavigator() {
             UserList: 'ios-people',
             Matches: 'ios-heart-empty'
           }
-
           color = focused ? ('#E53765') : ('gray')
           return <Icon name={iconName[route.name]} size={size} style={{color: color}} />
         },
@@ -42,7 +41,7 @@ function MainAppNavigator() {
     >
       <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="MatchRequest" component={MatchRequest}/>
-      <Tab.Screen name="UserList" component={UserList} />
+      <Tab.Screen name="UserList" component={UserListStack}/>
       <Tab.Screen name="Matches" component={ConfirmedMatch} />
     </Tab.Navigator>
   )

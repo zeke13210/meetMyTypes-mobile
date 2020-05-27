@@ -2,10 +2,11 @@ import React, { Component, useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Content, Text, Header, Left, List, ListItem, Thumbnail, Body, Right, Button, Icon, Title } from 'native-base';
 import axios from 'axios';
+import { useLinkTo } from '@react-navigation/native';
 
 export default function UserListScreen(props) {
     const [users, setUsers] = useState();
-
+    const linkTo = useLinkTo();
     useEffect(() => {
         const pullData = async () => {
             let response = await axios.get('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/admin/currentUsers')
@@ -16,21 +17,11 @@ export default function UserListScreen(props) {
     }, [])
     return (
         <Container>
-            <Header>
-                <Left>
-                    <Button transparent>
-                        <Icon onPress={() => props.navigation.toggleDrawer()} name="md-menu" />
-                    </Button>
-                </Left>
-                <Body>
-                    <Title>{props.route.name}</Title>
-                </Body>
-                <Right />
-            </Header>
             <Content>
+
                 <List>
-                    {users.map(user => (
-                        <ListItem avatar>
+                {users.map(user => (
+                        <ListItem avatar onPress={() => props.navigation.navigate('ListProfile')}>
                             <Left>
                                 <Thumbnail source={require('../../../assets/empty.png')} />
                             </Left>
@@ -43,9 +34,8 @@ export default function UserListScreen(props) {
                             </Right>
                         </ListItem>
                     ))}
-
                 </List>
-                
+
             </Content>
         </Container>
     )

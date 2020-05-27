@@ -44,17 +44,7 @@ export default class ProfileScreen extends Component {
 
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon onPress={() => this.props.navigation.toggleDrawer()} name="md-menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>{this.props.route.name}</Title>
-          </Body>
-          <Right />
-        </Header>
+        
         <Content>
 
           <Card style={{ marginTop: 2, flex: 2 }}>
