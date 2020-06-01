@@ -6,7 +6,7 @@ import { useLinkTo } from '@react-navigation/native';
 
 export default function UserListScreen(props) {
     const [users, setUsers] = useState();
-    const linkTo = useLinkTo();
+    //const linkTo = useLinkTo();
     useEffect(() => {
         const pullData = async () => {
             let response = await axios.get('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/admin/currentUsers')
@@ -21,7 +21,8 @@ export default function UserListScreen(props) {
 
                 <List>
                 {users.map(user => (
-                        <ListItem avatar onPress={() => props.navigation.navigate('ListProfile')}>
+                        <ListItem avatar key={user.UID} onPress={() => props.navigation.navigate('ListProfile',{ userId: `${user.UID}`,
+                                                                                                                 name: `${user.Nickname}`})}>
                             <Left>
                                 <Thumbnail source={require('../../../assets/empty.png')} />
                             </Left>
