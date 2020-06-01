@@ -10,25 +10,31 @@ const Stack = createStackNavigator();
 
 function HeaderStyle(route, navigation) {
     let title;
-    //const routeName = "Zach"
-    const routeName = route.state
+    let state = route.state
+    let index = state ? (route.state.index) : ("0")
+    console.log("Index: ", index)
+
+    const routeName = state
         ? // Get the currently active route name in the tab navigator
-        route.state.routes[route.state.index].name
+        (route.state.routes[index].name)
         : // If state doesn't exist, we need to default to `screen` param if available, or the initial screen
-        // In our case, it's "Feed" as that's the first screen inside the navigator
         route.params?.screen || 'MatchRequest';
+
+
     console.log("Route name: ", route.state)
     switch (routeName) {
         case 'MatchRequest':
-             return 'Match Request';
+            return 'Match Request';
         case 'Profile':
-            return  'My profile';
+            return 'My profile';
         case 'UserList':
-            return  'User List';
+            return 'Match Profiles';
         case 'Matches':
             return 'Matches';
-    }
-    
+        case 'ListProfile':
+            return 'User Profile'
+    } 
+
 }
 
 export default function AppStack() {
