@@ -3,9 +3,10 @@ import { StyleSheet } from 'react-native';
 import { Container, Content, Text, Header, Left, List, ListItem, Thumbnail, Body, Right, Button, Icon, Title } from 'native-base';
 import axios from 'axios';
 
-export default function ListProfileScreen(props) {
+export default function ListProfileScreen({route, navigation}) {
     const [users, setUsers] = useState();
-
+    const { name } = route.params;
+    const { userId } = route.params;
     /*useEffect(() => {
         const pullData = async () => {
             let response = await axios.get('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/admin/currentUsers')
@@ -16,7 +17,9 @@ export default function ListProfileScreen(props) {
     }, [])*/
     return (
         <Container>
-            
+            <Header>
+                <Text>{name} profile</Text>
+            </Header>
             <Content>
                 <Text>Link profile screen</Text>
             </Content>
