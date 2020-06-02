@@ -1,9 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Container, Content, Text, Header, Left, List, ListItem, Thumbnail, Body, Right, Button, Icon, Title } from 'native-base';
 import axios from 'axios';
 
-export default function ListProfileScreen({route, navigation}) {
+export default function ListProfileScreen({ route, navigation }) {
     const [users, setUsers] = useState();
     const { name } = route.params;
     const { userId } = route.params;
@@ -20,9 +21,14 @@ export default function ListProfileScreen({route, navigation}) {
             <Header>
                 <Text>{name} profile</Text>
             </Header>
-            <Content>
-                <Text>Link profile screen</Text>
-            </Content>
+            <Grid>
+                <Row size={1} style={{ backgroundColor: '#635DB7' }}>
+                    <Thumbnail large source={require('../../../assets/empty.png')} />
+                </Row>
+                <Row size={3} style={{ backgroundColor: '#00CE9F' }}>
+                    <Text>Link profile screen</Text>
+                </Row>
+            </Grid>
         </Container>
     )
 
