@@ -22,7 +22,10 @@ export default function UserListScreen(props) {
                 <List>
                 {users.map(user => (
                         <ListItem avatar key={user.UID} onPress={() => props.navigation.navigate('ListProfile',{ userId: `${user.UID}`,
-                                                                                                                 name: `${user.Nickname}`})}>
+                                                                                                                 name: `${user.Nickname}`,
+                                                                                                                 loveType: `${user.LoveType}`,
+                                                                                                                 Top4LoveTypes: `${user.Top4LoveTypes}`,
+                                                                                                                 Description: `${user.Description}`})}>
                             <Left>
                                 <Thumbnail source={require('../../../assets/empty.png')} />
                             </Left>
