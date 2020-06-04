@@ -19,24 +19,25 @@ export default function ListProfileScreen({ route, navigation }) {
     }, [])*/
     return (
         <Container>
-            <Header>
-                <Text>{name} profile</Text>
-            </Header>
             <Grid>
                 <Row size={1.25} style={styles.profileHeaderStyle}>
                     <Thumbnail large source={require('../../../assets/empty.png')} />
-                    <Text>{loveType}</Text>
-                    <Button info>
+                    <Text>{name}</Text>
+                    <Text>The {loveType}</Text>
+                    <Button style={{backgroundColor: '#E53765'}}>
                         <Text>Request Match</Text>
                     </Button>
                 </Row>
                 <View style={styles.lineStyle} />
-
                 <Row size={2.75} style={styles.profileContentStyle}>
-                    {LoveTypeList.map(userLoveType => (
-                        <Text style={styles.top4LoveTypesStyle}>{userLoveType}</Text>
-                    ))}
-                    <Text>{Description}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        {LoveTypeList.map(userLoveType => (
+                            <Text style={styles.top4LoveTypesStyle}>{userLoveType}</Text>
+                        ))}
+                    </View>
+                    <View>
+                        <Text>{Description}</Text>
+                    </View>
                 </Row>
             </Grid>
         </Container>
@@ -64,12 +65,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         //alignItems: 'center',
         //justifyContent: 'space-around',
-        flexDirection: 'row',
+        flexDirection: 'column',
         flexWrap: 'wrap'
     },
     top4LoveTypesStyle: {
         borderColor: 'black',
+        flexDirection: 'row',
         borderWidth: 4,
-        padding: 10
+        padding: 5,
+        flex: 3
     }
 })

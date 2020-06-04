@@ -14,7 +14,7 @@ export default function UserListScreen(props) {
             console.log("Users response: ", response.data.Items)
         }
         pullData()
-    }, [])
+    })
     return (
         <Container>
             <Content>
