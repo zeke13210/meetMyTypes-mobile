@@ -677,7 +677,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A35FFEBBAAAE69F908A5D69 /* Pods-meetmytypesmobile.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Q5FLFARUUX;
@@ -698,7 +698,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB783DDF172BFA64032AA65A /* Pods-meetmytypesmobile.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q5FLFARUUX;
 				INFOPLIST_FILE = meetmytypesmobile/Info.plist;
