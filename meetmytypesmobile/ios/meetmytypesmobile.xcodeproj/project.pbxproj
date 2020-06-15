@@ -20,6 +20,7 @@
 		AF89BD0DF5621CE6603CFDF5 /* libPods-meetmytypesmobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34923529ACBAD349289ED291 /* libPods-meetmytypesmobile-tvOS.a */; };
 		CA20B5BF61FEA1EABF0CD50A /* libPods-meetmytypesmobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC04EA5899CE75CDA76252EE /* libPods-meetmytypesmobileTests.a */; };
 		FD6A61D82497AC2A00D84201 /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FD6A61D72497AC2A00D84201 /* app_logo.png */; };
+		FD6A61DA2497CA8A00D84201 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD6A61D92497CA8900D84201 /* AppCenter-Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD6A61D72497AC2A00D84201 /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_logo.png; path = ../assets/app_logo.png; sourceTree = "<group>"; };
+		FD6A61D92497CA8900D84201 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "meetmytypesmobile/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		FEE3114E5A9076E4CBFFA02C /* Pods-meetmytypesmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meetmytypesmobileTests.debug.xcconfig"; path = "Target Support Files/Pods-meetmytypesmobileTests/Pods-meetmytypesmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +128,7 @@
 		13B07FAE1A68108700A75B9A /* meetmytypesmobile */ = {
 			isa = PBXGroup;
 			children = (
+				FD6A61D92497CA8900D84201 /* AppCenter-Config.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -342,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				FD6A61DA2497CA8A00D84201 /* AppCenter-Config.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				FD6A61D82497AC2A00D84201 /* app_logo.png in Resources */,
 			);
