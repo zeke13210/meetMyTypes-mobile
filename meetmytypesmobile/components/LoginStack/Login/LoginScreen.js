@@ -9,15 +9,15 @@ import { AuthContext } from '../../../navigation/context';
 export default function LoginScreen({ navigation, props }) {
   const [email, onChangeEmail] = useState(null)
   const [password, onChangePassword] = useState(null)
-  const [token, setToken] = useState('')
+  const [refreshToken, setToken] = useState('')
   const [verified, setVerified] = useState(false)
   const { signIn } = React.useContext(AuthContext);
   
 
-  const storeToken = async (token) => {
-    console.log("This is current token: ", token)
+  const storeToken = async (refreshToken) => {
+    console.log("This is current token: ", refreshToken)
     try {
-      await AsyncStorage.setItem('TOKEN', token)
+      await AsyncStorage.setItem('TOKEN', refreshToken)
       console.log("success storing token: ")
     } catch (e) {
       console.log("Error storing token: ", e)
@@ -40,9 +40,9 @@ export default function LoginScreen({ navigation, props }) {
       } else {
 
         setSuccess("Logging in") //show success msg
-        setToken(res.data.token) //send token to hook
-        storeToken(token) //store token to device
-        signIn(res.data.token) //send token Auth component
+        setToken(res.data.refreshToken) //send token to hook
+        storeToken(refreshToken) //store token to device
+        signIn(res.data.refreshToken) //send token Auth component
       }
     }).catch(err => console.log("Error pulling data: ", err))
   }

@@ -11,7 +11,6 @@ export default function UserListScreen(props) {
         const pullData = async () => {
             let response = await axios.get('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/admin/currentUsers')
             setUsers(response.data.Items)
-            console.log("Users response: ", response.data.Items)
         }
         pullData()
     })

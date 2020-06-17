@@ -12,7 +12,6 @@ function HeaderStyle(route, navigation) {
     let title;
     let state = route.state
     let index = state ? (route.state.index) : ("0")
-    console.log("Index: ", index)
 
     const routeName = state
         ? // Get the currently active route name in the tab navigator
@@ -21,7 +20,6 @@ function HeaderStyle(route, navigation) {
         route.params?.screen || 'MatchRequest';
 
 
-    console.log("Route name: ", route.state)
     switch (routeName) {
         case 'MatchRequest':
             return 'Match Request';

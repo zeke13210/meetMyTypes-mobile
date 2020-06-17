@@ -10,6 +10,7 @@ import DrawerNavigator from './DrawerNavigator';
 function AuthFlow() {
   const [isLoading, setLoadingState] = useState(true)
   const [userToken, setUserToken] = useState(null)
+  const [accessToken, setAccessToken] = useState(null)
   const [profile, setProfile] = useState(null)
   const authContext = React.useMemo(() => {
     return {

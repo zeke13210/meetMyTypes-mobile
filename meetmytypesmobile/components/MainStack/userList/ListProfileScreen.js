@@ -9,7 +9,7 @@ export default function ListProfileScreen({ route, navigation }) {
     const { name, userId, loveType, Top4LoveTypes, Description, email } = route.params;
     const LoveTypeList = Top4LoveTypes.split(',') //convert into list
     console.log("Top 4 love types: ", LoveTypeList)
-    function addMatch(){
+    async function addMatch(){
         let response = await axios.post('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/match/add', 
         {
             sentFromEmail: "zfarley94@gmail.com",
@@ -25,7 +25,7 @@ export default function ListProfileScreen({ route, navigation }) {
                     <Thumbnail large source={require('../../../assets/empty.png')} />
                     <Text>{name}</Text>
                     <Text>The {loveType}</Text>
-                    <Button style={{backgroundColor: '#E53765'}} onPress={addMatch()}>
+                    <Button style={{backgroundColor: '#E53765'}} onPress={()=>addMatch()}>
                         <Text>Request Match</Text>
                     </Button>
                 </Row>

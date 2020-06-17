@@ -19,15 +19,16 @@ export default function ProfileScreen({ navigation, props }) {
   const [isLoading, setLoading] = useState(true)
   const [data, setData] = useState(null)
   const { storeProfile } = React.useContext(AuthContext);
-  storeProfile(data)
 
   useEffect(() => {
     async function getProfile() {
       let token = await AsyncStorage.getItem('TOKEN')
       console.log("Token: ", token)
-      const response = await axios.get(`https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/profile/${token}`)
+      const response = await axios.get(`https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/user/profile/${token}/refresh`)
       setLoading(false)
       setData(response.data.data)
+      storeProfile(data)
+
     }
   }, [])
   
