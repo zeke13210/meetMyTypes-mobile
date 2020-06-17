@@ -10,7 +10,7 @@ import DrawerNavigator from './DrawerNavigator';
 function AuthFlow() {
   const [isLoading, setLoadingState] = useState(true)
   const [userToken, setUserToken] = useState(null)
-
+  const [profile, setProfile] = useState(null)
   const authContext = React.useMemo(() => {
     return {
       signIn: (token) => {
@@ -21,6 +21,13 @@ function AuthFlow() {
         setUserToken(null)
       },
 
+      storeProfile: (profile) => {
+        setProfile(profile)
+      },
+
+      getProfile: () => {
+        return (profile)
+      }
     }
   }, [])
 

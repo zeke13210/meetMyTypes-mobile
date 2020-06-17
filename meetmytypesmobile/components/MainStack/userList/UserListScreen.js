@@ -20,10 +20,11 @@ export default function UserListScreen(props) {
             <Content>
 
                 <List>
-                {users.map(user => (
+                {(users || []).map(user => (
                         <ListItem avatar key={user.UID} onPress={() => props.navigation.navigate('ListProfile',{ userId: `${user.UID}`,
                                                                                                                  name: `${user.Nickname}`,
                                                                                                                  loveType: `${user.LoveType}`,
+                                                                                                                 email: `${user.email}`,
                                                                                                                  Top4LoveTypes: `${user.Top4LoveTypes}`,
                                                                                                                  Description: `${user.Description}`})}>
                             <Left>

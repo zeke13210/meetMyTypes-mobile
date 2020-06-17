@@ -6,17 +6,18 @@ import axios from 'axios';
 
 export default function ListProfileScreen({ route, navigation }) {
     const [users, setUsers] = useState();
-    const { name, userId, loveType, Top4LoveTypes, Description } = route.params;
+    const { name, userId, loveType, Top4LoveTypes, Description, email } = route.params;
     const LoveTypeList = Top4LoveTypes.split(',') //convert into list
     console.log("Top 4 love types: ", LoveTypeList)
-    /*useEffect(() => {
-        const pullData = async () => {
-            let response = await axios.get('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/admin/currentUsers')
-            setUsers(response.data.Items)
-            console.log("Users response: ", response.data.Items)
-        }
-        pullData()
-    }, [])*/
+    function addMatch(){
+        let response = await axios.post('https://q1jp3exnqb.execute-api.us-east-1.amazonaws.com/dev/match/add', 
+        {
+            sentFromEmail: "zfarley94@gmail.com",
+            sentToEmail: "test@gmail.com",
+            sentToUserId: "112223344556677",
+            userId: `${userId}`
+        })
+    }
     return (
         <Container>
             <Grid>
@@ -24,15 +25,15 @@ export default function ListProfileScreen({ route, navigation }) {
                     <Thumbnail large source={require('../../../assets/empty.png')} />
                     <Text>{name}</Text>
                     <Text>The {loveType}</Text>
-                    <Button style={{backgroundColor: '#E53765'}}>
+                    <Button style={{backgroundColor: '#E53765'}} onPress={addMatch()}>
                         <Text>Request Match</Text>
                     </Button>
                 </Row>
                 <View style={styles.lineStyle} />
                 <Row size={2.75} style={styles.profileContentStyle}>
                     <View style={{ flexDirection: 'row' }}>
-                        {LoveTypeList.map(userLoveType => (
-                            <Text style={styles.top4LoveTypesStyle}>{userLoveType}</Text>
+                        {LoveTypeList.map((userLoveType, key) => (
+                            <Text key= {key} style={styles.top4LoveTypesStyle}>{userLoveType}</Text>
                         ))}
                     </View>
                     <View>
