@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "npx react-native run-ios",
+    "pod:install": "cd ios/ && pod install && cd ..",
     "clean": "npx react-native start --reset-cache",
     "start": "react-native start",
     "test": "jest",
