@@ -54,7 +54,7 @@ function AuthFlow() {
           console.log("storing res: ", res)
 
         } catch (e) {
-          console.log("Error storing token: ", e)
+          console.log("Error storing AuthFlow token: ", e)
         }
       }
       storeToken()
